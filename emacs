@@ -25,9 +25,19 @@
 ;; disable the startup page
 (setq inhibitinhibit-startup-message t)
 
-; turn on ido-mode & icomplete-mode
+;; turn on ido-mode & icomplete-mode
 (ido-mode t)
 (icomplete-mode t)
+
+;; set frame title
+(setq frame-title-format "emacs@%b")
+
+;; set text-mode as the default major mode
+(setq default-major-mode 'text-mode)
+
+;; set personal information
+(setq user-full-name "jcchen")
+(setq user-mail-address "junchangchen@gmail.com")
 
 
 ;;---------------
@@ -36,6 +46,25 @@
 
 (add-hook 'html-mode-hook
   (lambda () (set (make-local-variable 'sgml-mode-hook) 4)))
+
+
+
+;;---------------
+;; Mode Setting
+;;---------------
+
+; electric-pair-mode auto turn on
+(electric-pair-mode t)
+
+
+;; Org mode
+;; auto turn on the auto-complete-mode & visual-line-mode
+(add-hook 'org-mode-hook (lambda ()
+  (interactive)
+  (auto-complete-mode t)
+  (visual-line-mode)))
+
+
 
 
 
@@ -69,6 +98,13 @@
   (yank))
 
 (global-set-key (kbd "C-M-<down>") 'dumplicate-line)
+
+
+;; global keybinding for Org-mode agenda etc
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 
 
@@ -110,3 +146,8 @@
 ;; ------------------------
 
 ;; Haskell mode
+
+
+
+
+
