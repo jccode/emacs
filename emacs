@@ -1,3 +1,4 @@
+
 ;;---------------
 ;; Load plugins
 ;;---------------
@@ -58,6 +59,17 @@
 
 
 ;; duplicated line
+(defun duplicate-line (n) 
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+
+(global-set-key (kbd "C-M-<down>") 'dumplicate-line)
+
 
 
 
@@ -93,3 +105,8 @@
 ;(require 'json)
 
 
+;; ------------------------
+;; Language special setting
+;; ------------------------
+
+;; Haskell mode
