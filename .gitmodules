@@ -7,3 +7,6 @@
 [submodule "plugins/yasnippet"]
 	path = plugins/yasnippet
 	url = git@github.com:jccode/yasnippet.git
+[submodule "plugins/multiple-cursors"]
+	path = plugins/multiple-cursors
+	url = git@github.com:jccode/multiple-cursors.el.git

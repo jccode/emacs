@@ -143,6 +143,16 @@
 ;(require 'json)
 
 
+;; multiple-cursor
+(add-to-list 'load-path "~/emacs/plugins/multiple-cursors")
+(require 'multiple-cursors)
+;; global keybinding for multiple-cursor
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
 ;; ------------------------
 ;; Language special setting
 ;; ------------------------
