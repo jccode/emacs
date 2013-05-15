@@ -153,6 +153,14 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 
+;; smex
+(require 'smex)
+;(smex-initialize)
+;; key binds for smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; This is your old M-x.
+
 ;; ------------------------
 ;; Language special setting
 ;; ------------------------
