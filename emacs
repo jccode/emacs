@@ -138,6 +138,11 @@
 (ac-config-default)
 
 
+;; delete selection mode
+(require 'delsel)
+(delete-selection-mode 1)
+
+
 ;; smart-tab
 (require 'smart-tab)
 (global-smart-tab-mode 1)
@@ -154,6 +159,12 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+
+;; expand-region
+(add-to-list 'load-path "~/emacs/plugins/expand-region")
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 
 ;; smex
