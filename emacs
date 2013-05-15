@@ -35,6 +35,9 @@
 ;; set text-mode as the default major mode
 (setq default-major-mode 'text-mode)
 
+;; set default coding for new file
+(setq default-buffer-file-coding-system 'utf-8-unix)
+
 ;; set personal information
 (setq user-full-name "jcchen")
 (setq user-mail-address "junchangchen@gmail.com")
