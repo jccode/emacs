@@ -6,6 +6,24 @@
 (add-to-list 'load-path "~/emacs/plugins")
 
 
+;;----------------
+;; Function define
+;;----------------
+(defun html-wrap-in-tag (beg end)
+  (interactive "r")
+  (let ((oneline? (= (line-number-at-pos beg) (line-number-at-pos end))))
+    (deactivate-mark)
+    (goto-char end)
+    (unless oneline? (newline-and-indent))
+    (insert "</div>")
+    (goto-char beg)
+    (insert "<div>")
+    (unless oneline? (newline-and-indent))
+    (indent-region beg (+ end 11))
+    (goto-char (+ beg 4))))
+
+
+
 ;;---------------
 ;; Common
 ;;---------------
@@ -47,9 +65,19 @@
 ;; Indent setting
 ;;---------------
 
-(add-hook 'html-mode-hook
-  (lambda () (set (make-local-variable 'sgml-mode-hook) 4)))
+;; default tab with 4 spaces
+(setq indent-tabs-mode nil)
+(setq default-tab-width 4)
+(setq tab-width 4)
+(setq tab-stop-list (number-sequence 4 120 4))
 
+;; sgml
+(setq sgml-basic-offset 4)
+
+;; xml
+;(add-hook nxml-mode-hook
+;  (lambda () 
+;    (set (make-local-variable 'sgml-mode) t)))
 
 
 ;;---------------
@@ -70,7 +98,11 @@
   ))
 
 
-
+;; sgml mode
+(add-hook 'sgml-mode-hook (lambda () 
+  (interactive)
+  (local-set-key (kbd "C-c C-w") 'html-wrap-in-tag)
+  ))
 
 
 
