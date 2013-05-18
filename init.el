@@ -109,6 +109,7 @@
 
 
 
+
 ;;---------------
 ;; Key Binding
 ;;---------------
@@ -209,6 +210,14 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; This is your old M-x.
+
+
+;; js2-mode
+(add-to-list 'load-path "~/emacs/plugins/js2-mode")
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
+
 
 ;; ------------------------
 ;; Language special setting
