@@ -66,7 +66,7 @@
 ;;---------------
 
 ;; default tab with 4 spaces
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 (setq tab-width 4)
 (setq tab-stop-list (number-sequence 4 120 4))
@@ -84,8 +84,11 @@
 ;; Mode Setting
 ;;---------------
 
-; electric-pair-mode auto turn on
+;; electric-pair-mode auto turn on
 (electric-pair-mode t)
+
+;; electric-indent-mode auto turn on. changed it that not always on but only when programing.
+;; (electric-indent-mode t)
 
 
 ;; Org mode
@@ -176,8 +179,8 @@
 
 
 ;; smart-tab
-(require 'smart-tab)
-(global-smart-tab-mode 1)
+;; (require 'smart-tab)
+;; (global-smart-tab-mode 1)
 
 ;; json
 ;(require 'json)
