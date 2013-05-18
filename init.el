@@ -236,3 +236,10 @@
 (setq nxml-child-indent 4
       nxml-outline-child-indent 4
       nxml-slash-auto-complete-flag t)
+
+
+;; less css mode
+(require 'less-css-mode)
+(add-hook 'less-css-mode-hook 'auto-complete-mode)
+;; (setq less-css-compile-at-save t)       ;compile at save
+
