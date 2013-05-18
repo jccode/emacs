@@ -80,35 +80,6 @@
 ;    (set (make-local-variable 'sgml-mode) t)))
 
 
-;;---------------
-;; Mode Setting
-;;---------------
-
-;; electric-pair-mode auto turn on
-(electric-pair-mode t)
-
-;; electric-indent-mode auto turn on. changed it that not always on but only when programing.
-;; (electric-indent-mode t)
-
-
-;; Org mode
-;; auto turn on the auto-complete-mode & visual-line-mode
-(add-hook 'org-mode-hook (lambda ()
-  (interactive)
-  (auto-complete-mode t)
-  (visual-line-mode)
-  (auto-fill-mode -1)
-  ))
-
-
-;; sgml mode
-(add-hook 'sgml-mode-hook (lambda () 
-  (interactive)
-  (local-set-key (kbd "C-c C-w") 'html-wrap-in-tag)
-  ))
-
-
-
 
 ;;---------------
 ;; Key Binding
@@ -229,3 +200,39 @@
 
 
 
+;;---------------
+;; Mode Setting
+;;---------------
+
+;; electric-pair-mode auto turn on
+(electric-pair-mode t)
+
+
+;; electric-indent-mode when programing
+(add-hook 'prog-mode-hook (lambda() 
+  (interactive)
+  (electric-indent-mode t)
+  ))
+
+
+;; Org mode
+;; auto turn on the auto-complete-mode & visual-line-mode
+(add-hook 'org-mode-hook (lambda ()
+  (interactive)
+  (auto-complete-mode t)
+  (visual-line-mode)
+  (auto-fill-mode -1)
+  ))
+
+
+;; sgml mode
+(add-hook 'sgml-mode-hook (lambda () 
+  (interactive)
+  (local-set-key (kbd "C-c C-w") 'html-wrap-in-tag)
+  ))
+
+
+;; nxml mode
+(setq nxml-child-indent 4
+      nxml-outline-child-indent 4
+      nxml-slash-auto-complete-flag t)
