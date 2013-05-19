@@ -1,6 +1,10 @@
 
-;; variable 
-(setq dropbox-d "/windows/F/Dropbox")
+(defvar windows-p (string-match "windows" (symbol-name system-type)))
+;; (if windows-p (message "it's windows") (message "it's linux")) 
+
+
+;; variable
+(setq dropbox-d (if windows-p "F:/Dropbox" "/windows/F/Dropbox"))
 (setq task-file (concat dropbox-d "/task/task.org"))
 (setq note-linux-file (concat dropbox-d "/note/linux/linux.org"))
 (setq note-emacs-file (concat dropbox-d "/note/emacs/emacs.org"))
