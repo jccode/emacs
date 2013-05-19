@@ -190,6 +190,20 @@
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
 
 
+;; slime & slime.js
+;; To install, use package-install. Don't do it manually.
+;;
+;; Refer to: https://github.com/Gozala/slime-js
+;;
+;; Install:
+;;     npm istall swank-js -g
+;;     M-x install-package slime-js
+;; 
+
+
+
+
+
 ;; ------------------------
 ;; Language special setting
 ;; ------------------------
@@ -243,6 +257,16 @@
 (require 'less-css-mode)
 (add-hook 'less-css-mode-hook 'auto-complete-mode)
 ;; (setq less-css-compile-at-save t)       ;compile at save
+
+
+
+;;--------------------------------
+;; package
+;;--------------------------------
+(require 'package)
+(add-to-list 'package-archives 
+  '("marmalade" . "http://marmalade-repo.org/packages/") t) (package-initialize)
+
 
 
 
