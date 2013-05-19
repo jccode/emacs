@@ -222,6 +222,7 @@
   (auto-complete-mode t)
   (visual-line-mode)
   (auto-fill-mode -1)
+  (electric-indent-mode -1)
   ))
 
 
