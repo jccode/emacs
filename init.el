@@ -2,8 +2,8 @@
 ;;---------------
 ;; Load plugins
 ;;---------------
-
-(add-to-list 'load-path "~/emacs/plugins")
+(setq emacs-directory "~/emacs")
+(add-to-list 'load-path (concat emacs-directory "/plugins"))
 
 
 ;;----------------
@@ -243,3 +243,10 @@
 (add-hook 'less-css-mode-hook 'auto-complete-mode)
 ;; (setq less-css-compile-at-save t)       ;compile at save
 
+
+
+;;--------------------------------
+;; some special setting for user
+;;--------------------------------
+(setq user-custom-file (concat emacs-directory "/user-custom.el"))
+(load user-custom-file)
