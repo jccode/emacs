@@ -37,6 +37,9 @@
 ;; show line number
 (global-linum-mode t)
 
+;; highline parentheses match
+(show-paren-mode 1)
+
 ;; show column-number
 ;; which is enabled by default
 
@@ -193,14 +196,21 @@
 ;; slime & slime.js
 ;; To install, use package-install. Don't do it manually.
 ;;
-;; Refer to: https://github.com/Gozala/slime-js
+;; Installation refer to: https://github.com/Gozala/slime-js
 ;;
 ;; Install:
 ;;     npm istall swank-js -g
 ;;     M-x install-package slime-js
+;;
+;; Usage refer to: https://github.com/swank-js/swank-js
 ;; 
-
-
+;; slime.js setting
+(global-set-key [f5] 'slime-js-reload)
+(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
+(add-hook 'css-mode-hook (lambda ()
+  (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+  ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
+  ))
 
 
 
