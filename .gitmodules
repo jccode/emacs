@@ -16,3 +16,6 @@
 [submodule "plugins/js2-mode"]
 	path = plugins/js2-mode
 	url = git://github.com/mooz/js2-mode.git
+[submodule "plugins/perspective-el"]
+	path = plugins/perspective-el
+	url = git://github.com/nex3/perspective-el.git

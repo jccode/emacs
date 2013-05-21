@@ -213,6 +213,10 @@
   ))
 
 
+;; perspective-el
+(add-to-list 'load-path "~/emacs/plugins/perspective-el")
+(require 'perspective)
+
 
 ;; ------------------------
 ;; Language special setting
