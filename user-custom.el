@@ -11,6 +11,7 @@
 (setq note-english-file (concat dropbox-d "/note/english/english-note.org"))
 (setq note-mysql-file (concat dropbox-d "/note/mysql.org"))
 (setq note-program-file (concat dropbox-d "/note/programing.org"))
+(setq note-hgst-file (concat dropbox-d "/note/hgst.org"))
 
 
 ;; function definition
@@ -22,6 +23,7 @@
 (defun jc-edit-note-mysql () (interactive) (find-file note-mysql-file))
 (defun jc-edit-note-english () (interactive) (find-file note-english-file))
 (defun jc-edit-note-program () (interactive) (find-file note-program-file))
+(defun jc-edit-note-hgst () (interactive) (find-file note-hgst-file))
 
 
 ;; set custom prefix-key : C-x j
@@ -38,4 +40,5 @@
 (define-key ctrl-x-j-map (kbd "n l") 'jc-edit-note-linux)
 (define-key ctrl-x-j-map (kbd "n m") 'jc-edit-note-mysql)
 (define-key ctrl-x-j-map (kbd "n p") 'jc-edit-note-program)
+(define-key ctrl-x-j-map (kbd "n h") 'jc-edit-note-hgst)
 
