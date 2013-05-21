@@ -42,3 +42,19 @@
 (define-key ctrl-x-j-map (kbd "n p") 'jc-edit-note-program)
 (define-key ctrl-x-j-map (kbd "n h") 'jc-edit-note-hgst)
 
+
+
+
+;; custom perspective
+(defun custom-persp/note ()
+  (interactive)
+  (custom-persp "note"
+                (find-file (concat dropbox-d "/note/"))))
+
+(defun custom-persp/emacs ()
+  (interactive)
+  (custom-persp "emacs"
+                (find-file "~/emacs/init.el")))
+
+(define-key persp-mode-map (kbd "C-x p n") 'custom-persp/note)
+(define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
