@@ -122,6 +122,8 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 
 
+;; global keybinding for select next window, the same as "C-x o"
+(global-set-key (kbd "C-<tab>") 'other-window)
 
 
 ;; -----------------
