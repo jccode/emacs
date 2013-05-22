@@ -226,6 +226,9 @@
      (setq persp-last current-perspective)))
 
 
+;; find-file-in-project
+(require 'find-file-in-project)
+
 
 
 ;; ------------------------
