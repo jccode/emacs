@@ -5,7 +5,6 @@
 (setq emacs-directory "~/emacs")
 (add-to-list 'load-path (concat emacs-directory "/plugins"))
 
-
 ;;----------------
 ;; Function define
 ;;----------------
@@ -22,6 +21,15 @@
     (indent-region beg (+ end 11))
     (goto-char (+ beg 4))))
 
+
+(defun compilation-exit-autoclose (status code msg)
+  (when (and (eq status 'exit) (zerop code))
+    (bury-buffer)
+    (delete-window (get-buffer-window (get-buffer "*compilation*")))
+    ;;(switch-to-prev-buffer (get-buffer-window (get-buffer "*compilation*")))
+    )
+  (cons msg code))
+(setq compilation-exit-message-function 'compilation-exit-autoclose)
 
 
 ;;---------------
@@ -284,7 +292,10 @@
 
 ;; less css mode
 (require 'less-css-mode)
-(add-hook 'less-css-mode-hook 'auto-complete-mode)
+(add-hook 'less-css-mode-hook (lambda ()
+  (interactive)
+  (auto-complete-mde t)
+  ))
 ;; (setq less-css-compile-at-save t)       ;compile at save
 
 
