@@ -1,10 +1,16 @@
 
+;;------------------
+;; define variables
+;;------------------
+(defvar windows-p (string-match "windows" (symbol-name system-type)))
+;; (if windows-p (message "it's windows") (message "it's linux"))
+(defvar reload-on-save t)
+(defvar kill-complation-buffer nil)
+
+
 ;;---------------
 ;; Load plugins
 ;;---------------
-(defvar windows-p (string-match "windows" (symbol-name system-type)))
-;; (if windows-p (message "it's windows") (message "it's linux")) 
-
 (setq emacs-directory "~/emacs")
 (add-to-list 'load-path (concat emacs-directory "/plugins"))
 
@@ -25,14 +31,32 @@
     (goto-char (+ beg 4))))
 
 
+(defun reload ()
+  "reload the page"
+  (shell-command-to-string "echo \"reload\" | nc localhost 32000")
+  (message "reload page"))
+
+
+
 (defun compilation-exit-autoclose (status code msg)
   (when (and (eq status 'exit) (zerop code))
     (bury-buffer)
-    (delete-window (get-buffer-window (get-buffer "*compilation*")))
-    ;;(switch-to-prev-buffer (get-buffer-window (get-buffer "*compilation*")))
-    )
+    (let (buffer)
+      (setq buffer (get-buffer "*compilation*"))
+      (if kill-complation-buffer
+          (delete-window (get-buffer-window buffer))
+        (switch-to-prev-buffer (get-buffer-window buffer)))
+      
+      ;; if less-css-mode reload page
+      (when (with-current-buffer buffer
+            (search-forward "lessc" nil t))
+          (reload)
+      )))
   (cons msg code))
 (setq compilation-exit-message-function 'compilation-exit-autoclose)
+
+
+
 
 
 ;;---------------
@@ -323,8 +347,6 @@
 
 
 
-
-
 ;;---------------
 ;; Mode Setting
 ;;---------------
@@ -383,9 +405,26 @@
 
 
 
+;;------------------------------
+;; My hook
+;;------------------------------
+
+;; reload page after save.
+(add-hook 'after-save-hook (lambda ()
+                             (interactive)
+                             (when reload-on-save
+                               (let (filename)
+                                 (setq filename (buffer-name))
+                                 (when (or (string-match-p "\\.html$" filename)
+                                            (string-match-p "\\.css$" filename)
+                                            (string-match-p "\\.js$" filename))
+                                   (reload))))
+                             ))
+
+
 
 ;;--------------------------------
-;; some special setting for user
+;; SOME special setting for user
 ;;--------------------------------
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
