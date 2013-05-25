@@ -4,7 +4,7 @@
 ;;------------------
 (defvar windows-p (string-match "windows" (symbol-name system-type)))
 ;; (if windows-p (message "it's windows") (message "it's linux"))
-(defvar reload-on-save t)
+(defvar reload-on-save nil)
 (defvar kill-complation-buffer nil)
 
 
@@ -416,8 +416,8 @@
                                (let (filename)
                                  (setq filename (buffer-name))
                                  (when (or (string-match-p "\\.html$" filename)
-                                            (string-match-p "\\.css$" filename)
-                                            (string-match-p "\\.js$" filename))
+                                           (string-match-p "\\.css$" filename)
+                                           (string-match-p "\\.js$" filename))
                                    (reload))))
                              ))
 
