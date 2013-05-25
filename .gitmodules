@@ -19,3 +19,9 @@
 [submodule "plugins/perspective-el"]
 	path = plugins/perspective-el
 	url = git://github.com/nex3/perspective-el.git
+[submodule "plugins/emacs-http-server"]
+	path = plugins/emacs-http-server
+	url = git://github.com/skeeto/emacs-http-server.git
+[submodule "plugins/skewer-mode"]
+	path = plugins/skewer-mode
+	url = git://github.com/skeeto/skewer-mode.git

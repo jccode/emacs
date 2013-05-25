@@ -2,6 +2,9 @@
 ;;---------------
 ;; Load plugins
 ;;---------------
+(defvar windows-p (string-match "windows" (symbol-name system-type)))
+;; (if windows-p (message "it's windows") (message "it's linux")) 
+
 (setq emacs-directory "~/emacs")
 (add-to-list 'load-path (concat emacs-directory "/plugins"))
 
@@ -217,12 +220,13 @@
 ;; Usage refer to: https://github.com/swank-js/swank-js
 ;; 
 ;; slime.js setting
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
-(add-hook 'css-mode-hook (lambda ()
-  (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-  ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
-  ))
+
+;; (global-set-key [f5] 'slime-js-reload)
+;; (add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
+;; (add-hook 'css-mode-hook (lambda ()
+;;   (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+;;   ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
+;;   ))
 
 
 ;; perspective-el
@@ -287,10 +291,26 @@
 
 
 
+;; ntcmd mode
 (require 'ntcmd)
 (add-to-list 'auto-mode-alist '("\\.bat$" . ntcmd-mode))
 (add-to-list 'auto-mode-alist '("\\.cmd$" . ntcmd-mode))
 
+
+;; simple-httpd
+(add-to-list 'load-path "~/emacs/plugins/emacs-http-server")
+(require 'simple-httpd)
+(setq httpd-root (if windows-p "D:/temp/" "/srv/www"))
+;; change the httpd-port to 8008
+(setq httpd-port 8008)
+
+
+;; skewer-mode
+(add-to-list 'load-path "~/emacs/plugins/skewer-mode")
+(require 'skewer-mode)
+(require 'skewer-repl)
+(require 'skewer-html)
+(require 'skewer-css)
 
 
 ;; ------------------------

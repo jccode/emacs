@@ -1,7 +1,4 @@
 
-(defvar windows-p (string-match "windows" (symbol-name system-type)))
-;; (if windows-p (message "it's windows") (message "it's linux")) 
-
 
 ;; variable
 (setq dropbox-d (if windows-p "F:/Dropbox" "/windows/F/Dropbox"))
