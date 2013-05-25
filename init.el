@@ -298,19 +298,21 @@
 
 
 ;; simple-httpd
-(add-to-list 'load-path "~/emacs/plugins/emacs-http-server")
-(require 'simple-httpd)
-(setq httpd-root (if windows-p "D:/temp/" "/srv/www"))
-;; change the httpd-port to 8008
-(setq httpd-port 8008)
+;; (add-to-list 'load-path "~/emacs/plugins/emacs-http-server")
+;; (require 'simple-httpd)
+;; (setq httpd-root (if windows-p "D:/temp/" "/srv/www"))
+;; ;; change the httpd-port to 8008
+;; (setq httpd-port 8008)
 
 
 ;; skewer-mode
-(add-to-list 'load-path "~/emacs/plugins/skewer-mode")
-(require 'skewer-mode)
-(require 'skewer-repl)
-(require 'skewer-html)
-(require 'skewer-css)
+;; (add-to-list 'load-path "~/emacs/plugins/skewer-mode")
+;; (require 'skewer-mode)
+;; (require 'skewer-repl)
+;; (require 'skewer-html)
+;; (require 'skewer-css)
+
+
 
 
 ;; ------------------------
