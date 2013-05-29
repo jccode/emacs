@@ -125,6 +125,31 @@ region-end is used."
       (copy-to-end-of-line)
     (copy-whole-lines (prefix-numeric-value arg))))
 
+(defun copy-to-end-of-line ()
+  (interactive)
+  (kill-ring-save (point)
+                  (line-end-position))
+  (message "Copied to end of line"))
+
+
+
+(defun region-as-string ()
+  (buffer-substring (region-beginning)
+                    (region-end)))
+
+(defun isearch-forward-use-region ()
+  (interactive)
+  (when (region-active-p)
+    (add-to-history 'search-ring (region-as-string))
+    (deactivate-mark))
+  (call-interactively 'isearch-forward))
+
+(defun isearch-backward-use-region ()
+  (interactive)
+  (when (region-active-p)
+    (add-to-history 'search-ring (region-as-string))
+    (deactivate-mark))
+  (call-interactively 'isearch-backward))
 
 
 
@@ -207,16 +232,16 @@ region-end is used."
 
 
 ;; duplicated line
-(defun duplicate-line (n) 
-  (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (next-line 1)
-  (yank))
+;; (defun duplicate-line (n) 
+;;   (interactive)
+;;   (move-beginning-of-line 1)
+;;   (kill-line)
+;;   (yank)
+;;   (open-line 1)
+;;   (next-line 1)
+;;   (yank))
 
-(global-set-key (kbd "C-M-<down>") 'dumplicate-line)
+;; (global-set-key (kbd "C-M-<down>") 'dumplicate-line)
 
 
 ;; global keybinding for Org-mode agenda etc
@@ -230,6 +255,24 @@ region-end is used."
 (global-set-key (kbd "C-<tab>") 'other-window)
 
 (global-set-key (kbd "C-x p f") 'ffip)
+
+
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-S-return>") 'open-line-above)
+
+;; Duplicate region
+(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+
+;; Use M-w for copy-line if no active region
+(global-set-key (kbd "M-w") 'save-region-or-current-line)
+
+
+;; Like isearch, but adds region (if any) to history and deactivates mark
+(global-set-key (kbd "C-s") 'isearch-forward-use-region)
+(global-set-key (kbd "C-r") 'isearch-backward-use-region)
+
+(global-set-key (kbd "C-S-s") 'isearch-forward)
+(global-set-key (kbd "C-S-r") 'isearch-backward)
 
 
 ;; -----------------
