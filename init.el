@@ -274,6 +274,8 @@ region-end is used."
 (global-set-key (kbd "C-S-s") 'isearch-forward)
 (global-set-key (kbd "C-S-r") 'isearch-backward)
 
+(global-set-key (kbd "C-c j") 'delete-indentation)
+
 
 ;; -----------------
 ;; Plugins
