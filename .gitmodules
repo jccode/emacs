@@ -25,3 +25,6 @@
 [submodule "plugins/skewer-mode"]
 	path = plugins/skewer-mode
 	url = git://github.com/skeeto/skewer-mode.git
+[submodule "plugins/nxhtml"]
+	path = plugins/nxhtml
+	url = git://github.com/emacsmirror/nxhtml.git
