@@ -195,6 +195,9 @@ region-end is used."
 (setq user-full-name "jcchen")
 (setq user-mail-address "junchangchen@gmail.com")
 
+;; hide toolbar
+(tool-bar-mode -1)
+
 
 ;;---------------
 ;; Indent setting
