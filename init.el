@@ -440,6 +440,8 @@ region-end is used."
 
 (setq ffip-project-file '(".git" ".project"))
 ; TODO: define local patterns, local excludes bind to perspective
+(setq ffip-patterns '("*.html" "*.org" "*.txt" "*.el" "*.py" "*.js" 
+   "*.java" "*.jsp" "*.css" "*.less" "*.xml" "*.properties" "*.hs"))
 
 
 
