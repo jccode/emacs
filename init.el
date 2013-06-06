@@ -205,6 +205,11 @@ region-end is used."
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 
+;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 
 
 ;;---------------
@@ -613,6 +618,8 @@ region-end is used."
                                            (string-match-p "\\.js$" filename))
                                    (reload))))
                              ))
+
+
 
 
 
