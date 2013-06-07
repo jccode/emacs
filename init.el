@@ -204,12 +204,14 @@ region-end is used."
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
-
 ;; Emacs server
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
+
+;; turn on auto revert mode
+(auto-revert-mode t)
 
 
 ;;---------------
@@ -303,6 +305,10 @@ region-end is used."
 ;; zen coding
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+(add-hook 'nxhtml-mode-hook 'zencoding-mode)
+;; reset key bind
+(define-key zencoding-mode-keymap (kbd "<C-return>") nil)
+(define-key zencoding-mode-keymap (kbd "<C-M-return>") 'zencoding-expand-line)
 
 
 ;; yasnippet
