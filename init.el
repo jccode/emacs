@@ -529,6 +529,14 @@ region-end is used."
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 
+;; info-look
+(require 'info-look)
+(info-lookup-add-help
+ :mode 'python-mode
+ :regexp "[[:alnum:]_]+"
+ :doc-spec
+ '(("(python)Index" nil "")))
+
 
 
 ;; ------------------------
@@ -547,6 +555,11 @@ region-end is used."
 ;; ------------------------
 
 ;; Haskell mode
+
+
+;; django mode
+(require 'python)
+(require 'python-django)
 
 
 
