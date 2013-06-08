@@ -565,8 +565,12 @@ region-end is used."
 ;; (require 'epy-bindings)   ;; For my suggested keybindings [optional]
 ;; (require 'epy-nose)       ;; For nose integration
 
-(epy-setup-checker "pyflakes %f") ;; flymake checker
+;; (epy-setup-checker "pyflakes %f") ;; flymake checker
 (epy-django-snippets)             ;; django snippets
+(epy-setup-ipython)
+;; (global-hl-line-mode t)               ;; To enable
+;; (set-face-background 'hl-line "black") ;;
+
 
 
 
