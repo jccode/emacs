@@ -539,6 +539,37 @@ region-end is used."
 
 
 
+
+;; django mode
+;; (require 'python)
+;; (require 'python-django)
+
+
+;; Pymacs
+(require 'pymacs)
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+
+
+;; emacs-for-python
+;; (load-file "~/emacs/plugins/emacs-for-python/epy-init.el")
+(add-to-list 'load-path "~/emacs/plugins/emacs-for-python")
+(require 'epy-setup)      ;; It will setup other loads, it is required!
+(require 'epy-python)     ;; If you want the python facilities [optional]
+(require 'epy-completion) ;; If you want the autocompletion settings [optional]
+(require 'epy-editing)    ;; For configurations related to editing [optional]
+;; (require 'epy-bindings)   ;; For my suggested keybindings [optional]
+;; (require 'epy-nose)       ;; For nose integration
+
+(epy-setup-checker "pyflakes %f") ;; flymake checker
+(epy-django-snippets)             ;; django snippets
+
+
+
 ;; ------------------------
 ;; Themes
 ;; ------------------------
@@ -557,9 +588,6 @@ region-end is used."
 ;; Haskell mode
 
 
-;; django mode
-(require 'python)
-(require 'python-django)
 
 
 
@@ -647,3 +675,8 @@ region-end is used."
 ;;--------------------------------
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
+
+
+
+
+

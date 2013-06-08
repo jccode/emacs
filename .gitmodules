@@ -28,3 +28,6 @@
 [submodule "plugins/nxhtml"]
 	path = plugins/nxhtml
 	url = git://github.com/emacsmirror/nxhtml.git
+[submodule "plugins/emacs-for-python"]
+	path = plugins/emacs-for-python
+	url = git://github.com/gabrielelanaro/emacs-for-python.git
