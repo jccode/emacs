@@ -572,6 +572,16 @@ region-end is used."
 ;; (set-face-background 'hl-line "black") ;;
 
 
+;; dash
+(add-to-list 'load-path "~/emacs/plugins/dash")
+(require 'dash)
+
+;; wrap-region
+(add-to-list 'load-path "~/emacs/plugins/wrap-region")
+(require 'wrap-region)
+;; (wrap-region-mode t)
+(wrap-region-global-mode t)
+
 
 
 ;; ------------------------

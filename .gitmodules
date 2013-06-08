@@ -31,3 +31,9 @@
 [submodule "plugins/emacs-for-python"]
 	path = plugins/emacs-for-python
 	url = git://github.com/gabrielelanaro/emacs-for-python.git
+[submodule "plugins/wrap-region"]
+	path = plugins/wrap-region
+	url = git://github.com/rejeep/wrap-region.git
+[submodule "plugins/dash"]
+	path = plugins/dash
+	url = git://github.com/magnars/dash.el.git
