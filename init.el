@@ -546,29 +546,30 @@ region-end is used."
 
 
 ;; Pymacs
-(require 'pymacs)
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(autoload 'pymacs-autoload "pymacs")
+;; (require 'pymacs)
+;; (autoload 'pymacs-apply "pymacs")
+;; (autoload 'pymacs-call "pymacs")
+;; (autoload 'pymacs-eval "pymacs" nil t)
+;; (autoload 'pymacs-exec "pymacs" nil t)
+;; (autoload 'pymacs-load "pymacs" nil t)
+;; (autoload 'pymacs-autoload "pymacs")
 
 
 ;; emacs-for-python
 ;; (load-file "~/emacs/plugins/emacs-for-python/epy-init.el")
-(add-to-list 'load-path "~/emacs/plugins/emacs-for-python")
-(require 'epy-setup)      ;; It will setup other loads, it is required!
-(require 'epy-python)     ;; If you want the python facilities [optional]
-(require 'epy-completion) ;; If you want the autocompletion settings [optional]
-(require 'epy-editing)    ;; For configurations related to editing [optional]
+;; (add-to-list 'load-path "~/emacs/plugins/emacs-for-python")
+;; (require 'epy-setup)      ;; It will setup other loads, it is required!
+;; (require 'epy-python)     ;; If you want the python facilities [optional]
+;; (require 'epy-completion) ;; If you want the autocompletion settings [optional]
+;; (require 'epy-editing)    ;; For configurations related to editing [optional]
 ;; (require 'epy-bindings)   ;; For my suggested keybindings [optional]
 ;; (require 'epy-nose)       ;; For nose integration
 
-;; (epy-setup-checker "pyflakes %f") ;; flymake checker
-(epy-django-snippets)             ;; django snippets
-(epy-setup-ipython)
+;; (epy-django-snippets)             ;; django snippets
+;; (epy-setup-ipython)
+
 ;; (global-hl-line-mode t)               ;; To enable
+;; (epy-setup-checker "pyflakes %f") ;; flymake checker
 ;; (set-face-background 'hl-line "black") ;;
 
 
@@ -581,6 +582,27 @@ region-end is used."
 (require 'wrap-region)
 ;; (wrap-region-mode t)
 (wrap-region-global-mode t)
+
+
+
+
+;; jedi
+(add-to-list 'load-path "~/emacs/plugins/emacs-deferred")
+(require 'concurrent)
+(require 'deferred)
+
+(add-to-list 'load-path "~/emacs/plugins/ctable")
+(require 'ctable)
+
+(add-to-list 'load-path "~/emacs/plugins/emacs-epc")
+(require 'epc)
+
+(add-to-list 'load-path "~/emacs/plugins/emacs-jedi")
+(require 'jedi)
+(autoload 'jedi:setup "jedi" nil t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+
 
 
 
