@@ -211,7 +211,7 @@ region-end is used."
 
 
 ;; turn on auto revert mode
-(auto-revert-mode t)
+(global-auto-revert-mode t)
 
 
 ;;---------------
