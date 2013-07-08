@@ -182,6 +182,9 @@ region-end is used."
 (ido-mode t)
 (icomplete-mode t)
 
+;; set default fill-colume width 88
+(setq-default fill-column 88)
+
 ;; set frame title
 (setq frame-title-format "%b - Emacs")
 
