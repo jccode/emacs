@@ -154,6 +154,13 @@ region-end is used."
     (deactivate-mark))
   (call-interactively 'isearch-backward))
 
+(defun insert-date ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d" (current-time))))
+
+(defun insert-datetime ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M" (current-time))))
 
 
 ;;---------------
