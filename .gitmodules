@@ -49,3 +49,6 @@
 [submodule "plugins/emacs-jedi"]
 	path = plugins/emacs-jedi
 	url = git://github.com/tkf/emacs-jedi.git
+[submodule "plugins/emacs-groovy-mode"]
+	path = plugins/emacs-groovy-mode
+	url = https://github.com/russel/Emacs-Groovy-Mode.git

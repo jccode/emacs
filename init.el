@@ -374,32 +374,6 @@ region-end is used."
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command) ;; This is your old M-x.
 
 
-;; js2-mode
-(add-to-list 'load-path "~/emacs/plugins/js2-mode")
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
-
-
-;; slime & slime.js
-;; To install, use package-install. Don't do it manually.
-;;
-;; Installation refer to: https://github.com/Gozala/slime-js
-;;
-;; Install:
-;;     npm istall swank-js -g
-;;     M-x install-package slime-js
-;;
-;; Usage refer to: https://github.com/swank-js/swank-js
-;; 
-;; slime.js setting
-
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
-(add-hook 'css-mode-hook (lambda ()
-  (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-  ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
-  ))
 
 
 ;; perspective-el
@@ -514,6 +488,30 @@ region-end is used."
 (setq mumamo-background-colors nil)
 
 
+
+
+;; slime & slime.js
+;; To install, use package-install. Don't do it manually.
+;;
+;; Installation refer to: https://github.com/Gozala/slime-js
+;;
+;; Install:
+;;     npm istall swank-js -g
+;;     M-x install-package slime-js
+;;
+;; Usage refer to: https://github.com/swank-js/swank-js
+;; 
+;; slime.js setting
+
+(global-set-key [f5] 'slime-js-reload)
+(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
+(add-hook 'css-mode-hook (lambda ()
+  (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+  ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
+  ))
+
+
+
 ;; smooth-scrolling
 (require 'smooth-scrolling)
 
@@ -613,6 +611,31 @@ region-end is used."
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
+
+;; js2-mode
+(add-to-list 'load-path "~/emacs/plugins/js2-mode")
+(require 'js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
+
+
+;; groovy
+(add-to-list 'load-path "~/emacs/plugins/emacs-groovy-mode")
+
+;;; use groovy-mode when file ends in .groovy or has #!/bin/groovy at start
+(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
+(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+(add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
+(add-to-list 'auto-mode-alist '("\.gradle$" . groovy-mode))
+
+;;; make Groovy mode electric by default.
+;; (add-hook 'groovy-mode-hook
+;;           '(lambda ()
+;;              (require 'groovy-electric)
+;;              (groovy-electric-mode)))
+
+;;; turn on syntax highlighting
+;; (global-font-lock-mode 1)
 
 
 
