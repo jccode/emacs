@@ -243,6 +243,14 @@ region-end is used."
 ;    (set (make-local-variable 'sgml-mode) t)))
 
 
+;; configure those mode derived in CC Mode at once.
+;; such as: Groovy, java, C and related
+(defun my-c-mode-hook ()
+   (setq indent-tabs-mode nil
+         c-basic-offset 4))
+(add-hook 'c-mode-common-hook 'my-c-mode-hook)
+
+
 
 ;;---------------
 ;; Key Binding
@@ -682,7 +690,7 @@ region-end is used."
   (auto-complete-mode t)
   ;; (visual-line-mode)
   ;; (auto-fill-mode -1)
-  (electric-indent-mode -1)
+  (electric-indent-mode 0)
   ))
 
 
