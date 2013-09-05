@@ -52,3 +52,6 @@
 [submodule "plugins/emacs-groovy-mode"]
 	path = plugins/emacs-groovy-mode
 	url = https://github.com/russel/Emacs-Groovy-Mode.git
+[submodule "plugins/org-impress-js"]
+	path = plugins/org-impress-js
+	url = https://github.com/kinjo/org-impress-js.el.git

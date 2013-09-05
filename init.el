@@ -646,6 +646,11 @@ region-end is used."
 ;; (global-font-lock-mode 1)
 
 
+;; org-impress-js
+(add-to-list 'load-path "~/emacs/plugins/org-impress-js")
+(require 'org-impress-js)
+
+
 
 ;; ------------------------
 ;; Themes
