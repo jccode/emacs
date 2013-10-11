@@ -671,7 +671,10 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/haskell-mode/")
 (require 'haskell-mode-autoloads)
 (add-to-list 'Info-default-directory-list "~/emacs/plugins/haskell-mode/")
-
+;; fixed warning in windows
+(custom-set-variables                   
+ '(haskell-mode-hook 'turn-on-haskell-indentation)
+)
 
 
 ;;---------------
