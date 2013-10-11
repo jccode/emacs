@@ -695,7 +695,7 @@ region-end is used."
   (interactive)
   (auto-complete-mode t)
   ;; (visual-line-mode)
-  ;; (auto-fill-mode -1)
+  (auto-fill-mode t)
   (electric-indent-mode 0)
   ))
 
