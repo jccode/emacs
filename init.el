@@ -223,6 +223,8 @@ region-end is used."
 ;; turn on auto revert mode
 (global-auto-revert-mode t)
 
+;; coding
+(define-coding-system-alias 'UTF-8 'utf-8)
 
 ;;---------------
 ;; Indent setting
