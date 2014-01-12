@@ -763,7 +763,7 @@ region-end is used."
 ;;--------------------------------
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
-
+(load (concat emacs-directory "/pwd.el"))
 
 
 
