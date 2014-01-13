@@ -20,10 +20,10 @@
         el)
     (while (< i len)
       (setq el (elt lst i))
-      (message "%s %s" el (not (member i idxs)))
+      ;; (message "%s %s" el (not (member i idxs)))
       (if (not (member i idxs))
           (setq ret (cons el ret)))
-      (message "ret %s" ret)
+      ;; (message "ret %s" ret)
       (setq i (1+ i)))
     (reverse ret)))
 
@@ -103,6 +103,7 @@
                            idx (number-to-char base-num)))
                 (concat rst)
                 ))
+    (kill-new ret)
     (message "The encrypt password is: %s" ret)
     ret
     ))

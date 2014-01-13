@@ -20,7 +20,8 @@
 (define-key ctrl-x-j-map (kbd "t") 'jc-edit-task)
 (define-key ctrl-x-j-map (kbd "i d") 'insert-date)
 (define-key ctrl-x-j-map (kbd "i t") 'insert-datetime)
-
+(define-key ctrl-x-j-map (kbd "p e") 'encrypt-password)
+(define-key ctrl-x-j-map (kbd "p d") 'decrypt-password)
 
 
 ;; custom perspective
