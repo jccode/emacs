@@ -61,10 +61,10 @@
       (molokai-grey+2         "#403d3d")
       (molokai-grey+3         "#4c4745")
       (molokai-grey+5         "#232526")
-      (molokai-bg             "#1b1d1e")
+      (molokai-bg             "#272822") ; #1b1d1e
       (molokai-grey+10        "#080808")
       (molokai-dark           "#000000")
-      (molokai-base01         "#465457")
+      (molokai-base01         "#686964") ; #465457
       (molokai-base02         "#455354")
       (molokai-base03         "#293739")
       (molokai-dodgerblue     "#13354a"))
@@ -142,7 +142,7 @@
          (file-exists-p molokai-theme-kit-file))
     (load-file molokai-theme-kit-file))
 
-;;;###autoload
+;; autoload
 (and load-file-name
      (boundp 'custom-theme-load-path)
      (add-to-list 'custom-theme-load-path
