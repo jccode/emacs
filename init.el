@@ -658,11 +658,13 @@ region-end is used."
 ;; Themes
 ;; ------------------------
 (require 'color-theme)
-(require 'sublime-text-2)
-(require 'color-theme-monokai)
+;; (require 'sublime-text-2)
+;; (require 'color-theme-monokai)
 
 ;; The theme auto turn on
-(sublime-text-2)
+(require 'molokai-theme)
+;; (sublime-text-2)
+
 
 
 ;; ------------------------
