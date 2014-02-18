@@ -36,7 +36,10 @@
 
 (defun reload ()
   "reload the page"
-  
+
+  ;; send nc command in windows may cause emacs broken.
+  ;; so making this function only works on linux. 
+
   (unless windows-p
     (shell-command-to-string "echo \"reload\" | nc localhost 32000"))
   
@@ -675,10 +678,20 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/haskell-mode/")
 (require 'haskell-mode-autoloads)
 (add-to-list 'Info-default-directory-list "~/emacs/plugins/haskell-mode/")
-;; fixed warning in windows
-(custom-set-variables                   
- '(haskell-mode-hook 'turn-on-haskell-indentation)
-)
+
+;; (custom-set-variables                   
+;;  '(haskell-mode-hook 'turn-on-haskell-indentation)
+;; )
+
+;; set indentation to 4.
+;; Extra indentation after an indentation to the left (e.g. after do)
+(setq haskell-indentation-left-offset 4)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
 
 
 ;;---------------
