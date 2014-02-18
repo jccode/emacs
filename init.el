@@ -34,20 +34,20 @@
     (goto-char (+ beg 4))))
 
 
+
 (defun reload ()
   "reload the page"
 
   ;; send nc command in windows may cause emacs broken.
   ;; so making this function only works on linux. 
 
-  (unless windows-p
-    (shell-command-to-string "echo \"reload\" | nc localhost 32000"))
+  ;; (unless windows-p
+  ;;   (shell-command-to-string "echo \"reload\" | nc localhost 32000"))
   
-  ;; (let (reload-cmd)
-  ;;   (if windows-p
-  ;;       (setq reload-cmd "echo reload|nc -d localhost 32000")
-  ;;     (setq reload-cmd "echo \"reload\" | nc localhost 32000"))
-  ;;   (shell-command-to-string reload-cmd))
+  (if windows-p
+      (let ((cmd (concat (file-truename emacs-directory) "/reload.exe")))
+        (shell-command-to-string cmd))
+    (shell-command-to-string "echo \"reload\" | nc localhost 32000"))
   
   (message "reload page"))
 
