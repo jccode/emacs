@@ -656,6 +656,12 @@ region-end is used."
 (require 'org-impress-js)
 
 
+;; cal-china-x
+(add-to-list 'load-path "~/emacs/plugins/cal-china-x.el")
+(require 'cal-china-x)
+
+
+
 
 ;; ------------------------
 ;; Themes
@@ -779,7 +785,4 @@ region-end is used."
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
 (load (concat emacs-directory "/pwd.el"))
-
-
-
 
