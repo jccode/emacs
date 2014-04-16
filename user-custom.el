@@ -3,11 +3,12 @@
 ;; variable
 (setq dropbox-d (if windows-p "F:/Dropbox" "/windows/F/Dropbox"))
 (setq note-d (concat dropbox-d "/note/"))
+(setq todo-d (concat dropbox-d "/task/"))
 (setq task-file (concat dropbox-d "/task/task.org"))
 
 
 ;; function definition
-(defun jc-edit-task () (interactive) (find-file task-file))
+;; (defun jc-edit-task () (interactive) (find-file task-file))
 
 
 
@@ -15,9 +16,8 @@
 (define-prefix-command 'ctrl-x-j-map)
 (global-set-key (kbd "C-x j") 'ctrl-x-j-map)
 
-
 ;; define custom key binding
-(define-key ctrl-x-j-map (kbd "t") 'jc-edit-task)
+;; (define-key ctrl-x-j-map (kbd "t") 'jc-edit-task)
 (define-key ctrl-x-j-map (kbd "i d") 'insert-date)
 (define-key ctrl-x-j-map (kbd "i t") 'insert-datetime)
 (define-key ctrl-x-j-map (kbd "p e") 'encrypt-password)
@@ -33,18 +33,42 @@
                   (find-file root))
                 ))
 
-
 (defun custom-persp/emacs ()
   (interactive)
   (custom-persp "emacs"
                 (find-file "~/emacs/init.el")))
 
+(defun custom-persp/task ()
+  (interactive)
+  (custom-persp "todo"
+                (let ((root (concat dropbox-d "/task")))
+                   (find-file root))))
+
 (define-key persp-mode-map (kbd "C-x p n") 'custom-persp/note)
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
+(define-key persp-mode-map (kbd "C-x p t") 'custom-persp/task)
+
+;; org-agenda-files
+(setq org-agenda-files (list todo-d))
+
+;; capture
+(setq org-default-notes-file (concat todo-d "refile.org"))
+(setq org-capture-templates 
+      '(("t" "todo" entry (file org-default-notes-file) 
+         ;; "* TODO %?\n %U\n %i\n %a" :clock-in t :clock-resume t)
+         "* TODO %?\n %i\n" :clock-in t :clock-resume t)
+        ("m" "meeting" entry (file org-default-notes-file)
+         "* Meeting with %? :METTING:\n %U" :clock-in t :clock-resume t)
+        ("p" "phone call" entry (file org-default-notes-file)
+         "* PHONE %? :PHONE:\n %U" :clock-in t :clock-resume t)
+        ("r" "respond" entry (file org-default-notes-file)
+         "* TODO Respond to %:from on %:subject\n SCHEDULED: %t\n %U\n %a\n" :clock-in t :clock-resume t :immediate-finish t)
+        ))
 
 
 
-;; only show china holiday
+
+;; chinese-calendar. only show china holiday
 (load (concat emacs-directory "/birthday.el"))
 (setq chinese-holidays (append '(
                                  (holiday-fixed 2 14 "情人节")
