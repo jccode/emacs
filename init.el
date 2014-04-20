@@ -211,6 +211,10 @@ region-end is used."
 ;; hide toolbar
 (tool-bar-mode -1)
 
+;; quiet, please! No dinging!
+(setq ring-bell-function 'ignore)
+
+
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
