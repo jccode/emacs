@@ -670,7 +670,7 @@ region-end is used."
 ;; ------------------------
 ;; Themes
 ;; ------------------------
-(require 'color-theme)
+;; (require 'color-theme)
 ;; (require 'sublime-text-2)
 ;; (require 'color-theme-monokai)
 

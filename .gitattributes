@@ -1,0 +1,6 @@
+* text eol=lf
+
+*.el text
+
+*.elc binary
+*.exe binary
