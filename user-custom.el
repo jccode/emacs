@@ -85,3 +85,10 @@
 
 (setq calendar-holidays (append chinese-holidays birthday))
 
+
+;; load local.el if exist
+(let ((locale-config-f (concat emacs-directory "/locale.el")))
+  (if (file-exists-p locale-config-f)
+      (load locale-config-f)
+      ))
+
