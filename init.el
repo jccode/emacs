@@ -782,6 +782,11 @@ region-end is used."
 
 
 
+;;--------------------------------
+;; Others
+;;--------------------------------
+(require 'workaround-mumamo-buffer-file-name-warnings)
+
 
 ;;--------------------------------
 ;; SOME special setting for user
