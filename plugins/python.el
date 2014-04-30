@@ -213,10 +213,12 @@
 (require 'ansi-color)
 (require 'comint)
 
-;; Avoid compiler warnings
-(defvar view-return-to-alist)
-(defvar compilation-error-regexp-alist)
-(defvar outline-heading-end-regexp)
+(eval-when-compile
+  (require 'cl)
+  ;; Avoid compiler warnings
+  (defvar view-return-to-alist)
+  (defvar compilation-error-regexp-alist)
+  (defvar outline-heading-end-regexp))
 
 (autoload 'comint-mode "comint")
 
@@ -372,24 +374,12 @@ This variant of `rx' supports common python named REGEXPS."
   "Return non-nil if point is on TYPE using SYNTAX-PPSS.
 TYPE can be `comment', `string' or `paren'.  It returns the start
 character address of the specified TYPE."
-  (declare (compiler-macro
-            (lambda (form)
-              (pcase type
-                (`'comment
-                 `(let ((ppss (or ,syntax-ppss (syntax-ppss))))
-                    (and (nth 4 ppss) (nth 8 ppss))))
-                (`'string
-                 `(let ((ppss (or ,syntax-ppss (syntax-ppss))))
-                    (and (nth 3 ppss) (nth 8 ppss))))
-                (`'paren
-                 `(nth 1 (or ,syntax-ppss (syntax-ppss))))
-                (_ form)))))
   (let ((ppss (or syntax-ppss (syntax-ppss))))
-    (pcase type
-      (`comment (and (nth 4 ppss) (nth 8 ppss)))
-      (`string (and (nth 3 ppss) (nth 8 ppss)))
-      (`paren (nth 1 ppss))
-      (_ nil))))
+    (case type
+      (comment (and (nth 4 ppss) (nth 8 ppss)))
+      (string (and (not (nth 4 ppss)) (nth 8 ppss)))
+      (paren (nth 1 ppss))
+      (t nil))))
 
 (defun python-syntax-context-type (&optional syntax-ppss)
   "Return the context type using SYNTAX-PPSS.
@@ -430,7 +420,7 @@ The type returned can be `comment', `string' or `paren'."
           ;; Python versions.
           "nonlocal"
           ;; Extra:
-          "self" "cls" "mcl")
+          "self")
          symbol-end)
     ;; functions
     (,(rx symbol-start "def" (1+ space) (group (1+ (or word ?_))))
@@ -501,8 +491,8 @@ The type returned can be `comment', `string' or `paren'."
           (when (re-search-forward re limit t)
             (while (and (python-syntax-context 'paren)
                         (re-search-forward re limit t)))
-            (if (not (or (python-syntax-context 'paren)
-                         (equal (char-after (point-marker)) ?=)))
+            (if (and (not (python-syntax-context 'paren))
+                     (not (equal (char-after (point-marker)) ?=)))
                 t
               (set-match-data nil)))))
      (1 font-lock-variable-name-face nil nil))
@@ -536,7 +526,7 @@ is used to limit the scan."
     (while (and (< i 3)
                 (or (not limit) (< (+ point i) limit))
                 (eq (char-after (+ point i)) quote-char))
-      (setq i (1+ i)))
+      (incf i))
     i))
 
 (defun python-syntax-stringify ()
@@ -748,17 +738,17 @@ START is the buffer position where the sexp starts."
     (save-restriction
       (widen)
       (save-excursion
-        (pcase context-status
-          (`no-indent 0)
+        (case context-status
+          ('no-indent 0)
           ;; When point is after beginning of block just add one level
           ;; of indentation relative to the context-start
-          (`after-beginning-of-block
+          ('after-beginning-of-block
            (goto-char context-start)
            (+ (current-indentation) python-indent-offset))
           ;; When after a simple line just use previous line
           ;; indentation, in the case current line starts with a
           ;; `python-indent-dedenters' de-indent one level.
-          (`after-line
+          ('after-line
            (-
             (save-excursion
               (goto-char context-start)
@@ -771,12 +761,37 @@ START is the buffer position where the sexp starts."
           ;; When inside of a string, do nothing. just use the current
           ;; indentation.  XXX: perhaps it would be a good idea to
           ;; invoke standard text indentation here
-          (`inside-string
+          ('inside-string
            (goto-char context-start)
            (current-indentation))
           ;; After backslash we have several possibilities.
-          (`after-backslash
+          ('after-backslash
            (cond
+            ;; Check if current line is a dot continuation.  For this
+            ;; the current line must start with a dot and previous
+            ;; line must contain a dot too.
+            ((save-excursion
+               (back-to-indentation)
+               (when (looking-at "\\.")
+                 ;; If after moving one line back point is inside a paren it
+                 ;; needs to move back until it's not anymore
+                 (while (prog2
+                            (forward-line -1)
+                            (and (not (bobp))
+                                 (python-syntax-context 'paren))))
+                 (goto-char (line-end-position))
+                 (while (and (re-search-backward
+                              "\\." (line-beginning-position) t)
+                             (python-syntax-context-type)))
+                 (if (and (looking-at "\\.")
+                          (not (python-syntax-context-type)))
+                     ;; The indentation is the same column of the
+                     ;; first matching dot that's not inside a
+                     ;; comment, a string or a paren
+                     (current-column)
+                   ;; No dot found on previous line, just add another
+                   ;; indentation level.
+                   (+ (current-indentation) python-indent-offset)))))
             ;; Check if prev line is a block continuation
             ((let ((block-continuation-start
                     (python-info-block-continuation-line-p)))
@@ -816,7 +831,7 @@ START is the buffer position where the sexp starts."
                (+ (current-indentation) python-indent-offset)))))
           ;; When inside a paren there's a need to handle nesting
           ;; correctly
-          (`inside-paren
+          ('inside-paren
            (cond
             ;; If current line closes the outermost open paren use the
             ;; current indentation of the context-start line.
@@ -828,17 +843,44 @@ START is the buffer position where the sexp starts."
                             (not (python-syntax-context 'paren))))
                  (goto-char context-start)
                  (current-indentation))))
-            ;; Indent additional lines one in
-            ;; TODO: This recursively indents lines with nested parentheses,
-            ;; like
-            ;; (a, b, c, d,
-            ;;     (e, f, g,
-            ;;         h, i, j),
-            ;;     k)
-            (t (progn
-                 (goto-char context-start)
-                 (+ (current-indentation) python-indent-offset)))
-            )))))))
+            ;; If open paren is contained on a line by itself add another
+            ;; indentation level, else look for the first word after the
+            ;; opening paren and use it's column position as indentation
+            ;; level.
+            ((let* ((content-starts-in-newline)
+                    (indent
+                     (save-excursion
+                       (if (setq content-starts-in-newline
+                                 (progn
+                                   (goto-char context-start)
+                                   (forward-char)
+                                   (save-restriction
+                                     (narrow-to-region
+                                      (line-beginning-position)
+                                      (line-end-position))
+                                     (python-util-forward-comment))
+                                   (looking-at "$")))
+                           (+ (current-indentation) python-indent-offset)
+                         (current-column)))))
+               ;; Adjustments
+               (cond
+                ;; If current line closes a nested open paren de-indent one
+                ;; level.
+                ((progn
+                   (back-to-indentation)
+                   (looking-at (regexp-opt '(")" "]" "}"))))
+                 (- indent python-indent-offset))
+                ;; If the line of the opening paren that wraps the current
+                ;; line starts a block add another level of indentation to
+                ;; follow new pep8 recommendation. See: http://ur1.ca/5rojx
+                ((save-excursion
+                   (when (and content-starts-in-newline
+                              (progn
+                                (goto-char context-start)
+                                (back-to-indentation)
+                                (looking-at (python-rx block-start))))
+                     (+ indent python-indent-offset))))
+                (t indent)))))))))))
 
 (defun python-indent-calculate-levels ()
   "Calculate `python-indent-levels' and reset `python-indent-current-level'."
@@ -2166,11 +2208,11 @@ INPUT."
                  'default)
                 (t nil)))
          (completion-code
-          (pcase completion-context
-            (`pdb python-shell-completion-pdb-string-code)
-            (`import python-shell-completion-module-string-code)
-            (`default python-shell-completion-string-code)
-            (_ nil)))
+          (case completion-context
+            (pdb python-shell-completion-pdb-string-code)
+            (import python-shell-completion-module-string-code)
+            (default python-shell-completion-string-code)
+            (t nil)))
          (input
           (if (eq completion-context 'import)
               (replace-regexp-in-string "^[ \t]+" "" line)
@@ -2283,7 +2325,7 @@ Argument OUTPUT is a string with the output from the comint process."
               ;; encounters an exception, it prints the _entire_ stack
               ;; trace.  To handle all of these cases, we want to find
               ;; the _last_ stack frame printed in the most recent
-              ;; batch of output, then jump to the corresponding
+              ;; batch of output, then jump to the corrsponding
               ;; file/line number.
               (goto-char (point-max))
               (when (re-search-backward python-pdbtrack-stacktrace-info-regexp nil t)
@@ -2478,12 +2520,12 @@ JUSTIFY should be used (if applicable) as in `fill-paragraph'."
 JUSTIFY should be used (if applicable) as in `fill-paragraph'."
   (let* ((marker (point-marker))
          (str-start-pos
-          (set-marker
-           (make-marker)
-           (or (python-syntax-context 'string)
-               (and (equal (string-to-syntax "|")
-                           (syntax-after (point)))
-                    (point)))))
+          (let ((m (make-marker)))
+            (setf (marker-position m)
+                  (or (python-syntax-context 'string)
+                      (and (equal (string-to-syntax "|")
+                                  (syntax-after (point)))
+                           (point)))) m))
          (num-quotes (python-syntax-count-quotes
                       (char-after str-start-pos) str-start-pos))
          (str-end-pos
@@ -2496,17 +2538,17 @@ JUSTIFY should be used (if applicable) as in `fill-paragraph'."
           ;; Docstring styles may vary for oneliners and multi-liners.
           (> (count-matches "\n" str-start-pos str-end-pos) 0))
          (delimiters-style
-          (pcase python-fill-docstring-style
+          (case python-fill-docstring-style
             ;; delimiters-style is a cons cell with the form
             ;; (START-NEWLINES .  END-NEWLINES). When any of the sexps
             ;; is NIL means to not add any newlines for start or end
             ;; of docstring.  See `python-fill-docstring-style' for a
             ;; graphic idea of each style.
-            (`django (cons 1 1))
-            (`onetwo (and multi-line-p (cons 1 2)))
-            (`pep-257 (and multi-line-p (cons nil 2)))
-            (`pep-257-nn (and multi-line-p (cons nil 1)))
-            (`symmetric (and multi-line-p (cons 1 1)))))
+            (django (cons 1 1))
+            (onetwo (and multi-line-p (cons 1 2)))
+            (pep-257 (and multi-line-p (cons nil 2)))
+            (pep-257-nn (and multi-line-p (cons nil 1)))
+            (symmetric (and multi-line-p (cons 1 1)))))
          (docstring-p (save-excursion
                         ;; Consider docstrings those strings which
                         ;; start on a line by themselves.
@@ -2707,7 +2749,7 @@ The skeleton will be bound to python-skeleton-NAME."
       (easy-menu-add-item
        nil '("Python" "Skeletons")
        `[,(format
-           "Insert %s" (nth 2 (split-string (symbol-name skeleton) "-")))
+           "Insert %s" (caddr (split-string (symbol-name skeleton) "-")))
          ,skeleton t]))))
 
 ;;; FFAP
