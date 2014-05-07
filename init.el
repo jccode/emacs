@@ -781,11 +781,18 @@ region-end is used."
 
 
 
+;;--------------------------------
+;; org-mode for jekyll
+;;--------------------------------
+(load (concat emacs-directory "/org-jekyll.el"))
+(require 'org-jekyll)
+
 
 ;;--------------------------------
 ;; Others
 ;;--------------------------------
 (require 'workaround-mumamo-buffer-file-name-warnings)
+
 
 
 ;;--------------------------------
