@@ -622,10 +622,16 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/emacs-epc")
 (require 'epc)
 
+(add-to-list 'load-path "~/emacs/plugins/emacs-python-environment")
+(require 'python-environment)
+
 (add-to-list 'load-path "~/emacs/plugins/emacs-jedi")
 (require 'jedi)
 (autoload 'jedi:setup "jedi" nil t)
 ;; (add-hook 'python-mode-hook 'jedi:setup)
+
+;; (setq jedi:server-command '("~/emacs/plugins/emacs-jedi/jediepcserver.py"))
+(setq jedi:server-command (list "python" jedi:server-script))
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
 

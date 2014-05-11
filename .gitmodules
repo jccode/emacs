@@ -59,3 +59,6 @@
 [submodule "plugins/haskell-mode"]
 	path = plugins/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
+[submodule "plugins/emacs-python-environment"]
+	path = plugins/emacs-python-environment
+	url = git@github.com:tkf/emacs-python-environment.git
