@@ -17,6 +17,8 @@
 (add-to-list 'load-path (concat emacs-directory "/themes"))
 
 
+
+
 ;;----------------
 ;; Function define
 ;;----------------
@@ -328,6 +330,7 @@ region-end is used."
 ;; -----------------
 ;; Plugins
 ;; -----------------
+
 
 ;; zen coding
 (require 'zencoding-mode)
@@ -759,6 +762,27 @@ region-end is used."
 
 
 
+;; plantuml
+;; active org-babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (plantuml . t)))
+
+(setq org-plantuml-jar-path
+      (expand-file-name "~/emacs/res/plantuml.jar"))
+
+(require 'plantuml-mode)
+
+;; when load plantuml-mode at startup.
+;; emacs will split window to vertical. the below window shows *Message* buffer.
+;; The following code to fixed this behavour.
+(add-hook 'emacs-startup-hook
+          (lambda () (delete-other-windows)) t)
+
+(require 'plantuml_helpers)
+
+
 
 ;;--------------------------------
 ;; package
@@ -807,4 +831,6 @@ region-end is used."
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
 (load (concat emacs-directory "/pwd.el"))
+
+
 

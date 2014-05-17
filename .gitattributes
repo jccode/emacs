@@ -4,3 +4,4 @@
 
 *.elc binary
 *.exe binary
+*.jar binary
