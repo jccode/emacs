@@ -8,7 +8,7 @@
 (defun plantuml-render-buffer ()
   (interactive)
   (message "PLANTUML Start rendering")
-  (shell-command (concat "java -jar ~/emacs/res/plantuml.jar "
+  (shell-command (concat "java -jar " (expand-file-name "~/emacs/res/plantuml.jar") " "
                          buffer-file-name))
   (message (concat "PLANTUML Rendered: " (buffer-name))))
 
