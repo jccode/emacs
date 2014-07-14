@@ -1,4 +1,4 @@
-
+ 
 
 ;;------------------
 ;; define variables
@@ -517,18 +517,18 @@ region-end is used."
 ;;
 ;; Install:
 ;;     npm istall swank-js -g
-;;     M-x install-package slime-js
+;;     M-x package-install slime-js
 ;;
 ;; Usage refer to: https://github.com/swank-js/swank-js
 ;; 
 ;; slime.js setting
 
-(global-set-key [f5] 'slime-js-reload)
-(add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode)))
-(add-hook 'css-mode-hook (lambda ()
-  (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-  ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
-  ))
+;; (global-set-key [f5] 'slime-js-reload)
+;; (add-hook 'js2-mode-hook (lambda () (slime-js-minor-mode 1)))
+;; (add-hook 'css-mode-hook (lambda ()
+;;   (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+;;   ;; (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)
+;;   ))
 
 
 
@@ -800,6 +800,23 @@ region-end is used."
 (require 'angular-snippets)
 (eval-after-load "sgml-mode"
   '(define-key html-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point))
+
+;; 
+;; tern
+;; http://ternjs.net/doc/manual.html
+;; 
+(add-to-list 'load-path "~/emacs/plugins/tern/emacs/")
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
+
+;; this line only needed when `tern` cannot start correctly.
+;; e.g. "~/emacs" dir install in a windows partition.
+;; in this case, you need to install `tern` command manually via `npm install -g tern`
+(setq tern-command (list "tern"))
 
 
 

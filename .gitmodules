@@ -66,3 +66,6 @@
 	path = plugins/angular-snippets.el
 	url = git@github.com:magnars/angular-snippets.el.git
     ignore = dirty
+[submodule "plugins/tern"]
+	path = plugins/tern
+	url = git@github.com:marijnh/tern.git
