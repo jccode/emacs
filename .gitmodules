@@ -62,3 +62,6 @@
 [submodule "plugins/emacs-python-environment"]
 	path = plugins/emacs-python-environment
 	url = git@github.com:tkf/emacs-python-environment.git
+[submodule "plugins/angular-snippets.el"]
+	path = plugins/angular-snippets.el
+	url = git@github.com:magnars/angular-snippets.el.git

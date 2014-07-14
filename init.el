@@ -795,6 +795,12 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
+;; angular js snippets
+(add-to-list 'load-path "~/emacs/plugins/angular-snippets.el/")
+(require 'angular-snippets)
+(eval-after-load "sgml-mode"
+  '(define-key html-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point))
+
 
 
 ;;--------------------------------
