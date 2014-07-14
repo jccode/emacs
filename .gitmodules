@@ -65,3 +65,4 @@
 [submodule "plugins/angular-snippets.el"]
 	path = plugins/angular-snippets.el
 	url = git@github.com:magnars/angular-snippets.el.git
+    ignore = dirty
