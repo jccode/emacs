@@ -761,6 +761,10 @@ region-end is used."
 ;; (setq less-css-compile-at-save t)       ;compile at save
 
 
+;; scss
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
 
 ;; plantuml
 ;; active org-babel languages
@@ -781,6 +785,15 @@ region-end is used."
           (lambda () (delete-other-windows)) t)
 
 (require 'plantuml_helpers)
+
+
+;; markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 
 
 

@@ -1,7 +1,7 @@
 
 
 ;; variable
-(setq dropbox-d (if windows-p "D:/Dropbox" "/data/Dropbox"))
+(setq dropbox-d (if windows-p "D:/Dropbox" "~/Dropbox"))
 (setq note-d (concat dropbox-d "/note/"))
 (setq todo-d (concat dropbox-d "/task/"))
 (setq task-file (concat dropbox-d "/task/task.org"))
