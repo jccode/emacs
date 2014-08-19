@@ -167,6 +167,13 @@ region-end is used."
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M" (current-time))))
 
+(defun switch-to-minibuffer ()
+  "Switch to minibuffer window."
+  (interactive)
+  (if (active-minibuffer-window)
+      (select-window (active-minibuffer-window))
+    (error "Minibuffer is not active")))
+
 
 ;;---------------
 ;; Common
@@ -325,6 +332,8 @@ region-end is used."
 (global-set-key (kbd "C-S-r") 'isearch-backward)
 
 (global-set-key (kbd "C-c j") 'delete-indentation)
+;; (global-set-key (kbd "C-c o") 'switch-to-minibuffer)
+;; (global-set-key "\C-co" 'switch-to-minibuffer) ;; Bind to `C-c o'
 
 
 ;; -----------------
@@ -662,6 +671,11 @@ region-end is used."
 
 ;;; turn on syntax highlighting
 ;; (global-font-lock-mode 1)
+
+;; yaml
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
+
 
 
 ;; org-impress-js
