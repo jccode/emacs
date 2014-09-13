@@ -833,6 +833,11 @@ region-end is used."
 (setq tern-command (list "tern"))
 
 
+;; common lisp SLIME
+;; To use slime-helper, install quicklisp, sbcl in system
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+(setq inferior-lisp-program "/usr/bin/sbcl")
+
 
 ;;--------------------------------
 ;; package
