@@ -835,8 +835,11 @@ region-end is used."
 
 ;; common lisp SLIME
 ;; To use slime-helper, install quicklisp, sbcl in system
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "/usr/bin/sbcl")
+(let ((f (expand-file-name "~/quicklisp/slime-helper.el")))
+  (when (file-exists-p f)
+    (load (expand-file-name "~/quicklisp/slime-helper.el"))
+    (setq inferior-lisp-program "/usr/bin/sbcl")))
+
 
 
 ;;--------------------------------
