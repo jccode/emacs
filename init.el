@@ -841,6 +841,13 @@ region-end is used."
     (setq inferior-lisp-program "/usr/bin/sbcl")))
 
 
+;; 
+;; scala
+;;
+(add-to-list 'load-path "~/emacs/plugins/scala-mode2/")
+(require 'scala-mode2)
+
+
 
 ;;--------------------------------
 ;; package
