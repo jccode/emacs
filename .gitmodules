@@ -72,3 +72,9 @@
 [submodule "plugins/scala-mode2"]
 	path = plugins/scala-mode2
 	url = git@github.com:hvesalai/scala-mode2.git
+[submodule "plugins/ensime-emacs"]
+	path = plugins/ensime-emacs
+	url = https://github.com/ensime/ensime-emacs.git
+[submodule "plugins/sbt-mode"]
+	path = plugins/sbt-mode
+	url = git://github.com/hvesalai/sbt-mode.git
