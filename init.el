@@ -726,6 +726,10 @@ region-end is used."
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 
+;; coffee-script
+(add-to-list 'load-path "~/emacs/plugins/coffee-mode/")
+(require 'coffee-mode)
+
 
 ;;---------------
 ;; Mode Setting

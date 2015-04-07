@@ -78,3 +78,6 @@
 [submodule "plugins/sbt-mode"]
 	path = plugins/sbt-mode
 	url = git://github.com/hvesalai/sbt-mode.git
+[submodule "plugins/coffee-mode"]
+	path = plugins/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
