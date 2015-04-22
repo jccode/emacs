@@ -81,3 +81,6 @@
 [submodule "plugins/coffee-mode"]
 	path = plugins/coffee-mode
 	url = https://github.com/defunkt/coffee-mode.git
+[submodule "plugins/company-mode"]
+	path = plugins/company-mode
+	url = https://github.com/company-mode/company-mode.git

@@ -845,6 +845,10 @@ region-end is used."
     (setq inferior-lisp-program "/usr/bin/sbcl")))
 
 
+;; company-mode. required by scala-mode
+(add-to-list 'load-path "~/emacs/plugins/company-mode/")
+(require 'company)
+
 ;; 
 ;; scala
 ;;
