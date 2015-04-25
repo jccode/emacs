@@ -687,6 +687,20 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/cal-china-x.el")
 (require 'cal-china-x)
 
+;; dirtree
+(require 'tree-mode)
+(require 'windata)
+(require 'dirtree)
+
+;; open dirtree in current project
+(defun dirtree-prj ()
+  (interactive)
+  (dirtree (ffip-project-root) t))
+
+(defun dirtree-prj-in-buffer ()
+  (interactive)
+  (dirtree-in-buffer (ffip-project-root) t))
+
 
 
 
