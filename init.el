@@ -419,54 +419,6 @@ region-end is used."
 
 
 
-;; find-file-in-project
-(require 'find-file-in-project)
-
-;; Helper method to create local settings
-;; https://github.com/magnars/.emacs.d/blob/master/setup-ffip.el
-(defun ffip-set-root (path)
-  "By default, ffip consider the folder as a root that cotains .git file.
-  If our project not a git project. You can use this function to define the project root."
-  (set (make-local-variable 'ffip-project-root) path))
-
-(defun ffip--create-exclude-find-options (names)
-  (mapconcat (lambda (name)
-               (concat "-not -regex \".*" name ".*\"")) names " "))
-
-(defun ffip-local-excludes (&rest names)
-  "Given a set of names, will exclude results with those names in the path.
-
-  Example:
-  (ffip-local-excludes \"target\" \"overlays\")"
-  (set (make-local-variable 'ffip-find-options)
-       (ffip--create-exclude-find-options names)))
-
-(defun ffip-local-patterns (&rest patterns)
-  "An exhaustive list of file name patterns to look for.
-
-  Example:
-  (ffip-local-patterns \"*.js\" \"*.jsp\" \"*.css\")"
-  (set (make-local-variable 'ffip-patterns) patterns))
-
-;; Function to create new functions that look for a specific pattern
-(defun ffip-create-pattern-file-finder (&rest patterns)
-  (lexical-let ((patterns patterns))
-    (lambda ()
-      (interactive)
-      (let ((ffip-patterns patterns))
-        (find-file-in-project)))))
-
-(setq ffip-find-options
-      (ffip--create-exclude-find-options
-       '("node_modules"
-         "target"
-         )))
-
-(setq ffip-project-file '(".git" ".project"))
-; TODO: define local patterns, local excludes bind to perspective
-(setq ffip-patterns '("*.html" "*.org" "*.txt" "*.el" "*.py" "*.js" 
-   "*.java" "*.jsp" "*.css" "*.less" "*.xml" "*.properties" "*.hs"))
-
 
 
 ;; ntcmd mode
@@ -516,6 +468,59 @@ region-end is used."
 (load "~/emacs/plugins/nxhtml/autostart.el")
 (setq mumamo-background-colors nil)
 
+
+
+
+;; find-file-in-project
+(require 'find-file-in-project)
+
+;; Helper method to create local settings
+;; https://github.com/magnars/.emacs.d/blob/master/setup-ffip.el
+(defun ffip-set-root (path)
+  "By default, ffip consider the folder as a root that cotains .git file.
+  If our project not a git project. You can use this function to define the project root."
+  (set (make-local-variable 'ffip-project-root) path))
+
+(defun ffip--create-exclude-find-options (names)
+  (mapconcat (lambda (name)
+               (concat "-not -regex \".*" name ".*\"")) names " "))
+
+(defun ffip-local-excludes (&rest names)
+  "Given a set of names, will exclude results with those names in the path.
+
+  Example:
+  (ffip-local-excludes \"target\" \"overlays\")"
+  (set (make-local-variable 'ffip-find-options)
+       (ffip--create-exclude-find-options names)))
+
+(defun ffip-local-patterns (&rest patterns)
+  "An exhaustive list of file name patterns to look for.
+
+  Example:
+  (ffip-local-patterns \"*.js\" \"*.jsp\" \"*.css\")"
+  (set (make-local-variable 'ffip-patterns) patterns))
+
+;; Function to create new functions that look for a specific pattern
+(defun ffip-create-pattern-file-finder (&rest patterns)
+  (lexical-let ((patterns patterns))
+    (lambda ()
+      (interactive)
+      (let ((ffip-patterns patterns))
+        (find-file-in-project)))))
+
+(setq ffip-find-options
+      (ffip--create-exclude-find-options
+       '("node_modules"
+         "target"
+         )))
+
+(setq ffip-project-file '(".project" ".git"))
+;; (setq ffip-project-file ".git")
+; TODO: define local patterns, local excludes bind to perspective
+(setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
+   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.xml" "*.properties" "*.hs"))
+
+(if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 
 
 
@@ -906,6 +911,7 @@ region-end is used."
                                (let (filename)
                                  (setq filename (buffer-name))
                                  (when (or (string-match-p "\\.html$" filename)
+                                           (string-match-p "\\.htm$" filename)
                                            (string-match-p "\\.css$" filename)
                                            (string-match-p "\\.js$" filename))
                                    (reload))))
