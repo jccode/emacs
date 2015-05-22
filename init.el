@@ -749,6 +749,12 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/coffee-mode/")
 (require 'coffee-mode)
 
+;; defined custom key-bindings
+(eval-after-load "coffee-mode"
+  '(progn
+     (define-key coffee-mode-map (kbd "C-c C-c") 'coffee-compile-file)))
+
+
 
 ;;---------------
 ;; Mode Setting
