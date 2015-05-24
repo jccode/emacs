@@ -752,6 +752,7 @@ region-end is used."
 ;; defined custom key-bindings
 (eval-after-load "coffee-mode"
   '(progn
+     (setq coffee-indent-tabs-mode t)
      (define-key coffee-mode-map (kbd "C-c C-c") 'coffee-compile-file)))
 
 
