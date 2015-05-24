@@ -52,7 +52,7 @@
 	url = git://github.com/tkf/emacs-jedi.git
 [submodule "plugins/emacs-groovy-mode"]
 	path = plugins/emacs-groovy-mode
-	url = https://github.com/russel/Emacs-Groovy-Mode.git
+	url = https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes.git
 [submodule "plugins/org-impress-js"]
 	path = plugins/org-impress-js
 	url = https://github.com/kinjo/org-impress-js.el.git
@@ -64,7 +64,7 @@
 	url = git@github.com:tkf/emacs-python-environment.git
 [submodule "plugins/angular-snippets.el"]
 	path = plugins/angular-snippets.el
-	url = git@github.com:magnars/angular-snippets.el.git
+	url = https://github.com/magnars/angular-snippets.el.git
     ignore = dirty
 [submodule "plugins/tern"]
 	path = plugins/tern
