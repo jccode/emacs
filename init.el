@@ -508,17 +508,28 @@ region-end is used."
       (let ((ffip-patterns patterns))
         (find-file-in-project)))))
 
-(setq ffip-find-options
-      (ffip--create-exclude-find-options
+;; (setq ffip-find-options
+;;       (ffip--create-exclude-find-options
+;;        '("node_modules"
+;;          "bower_components"
+;;          "target"
+;;          )))
+
+(let ((exclude-option (ffip--create-exclude-find-options
        '("node_modules"
+         "bower_components"
          "target"
          )))
+      (other-option '" -not -path '*/\.*'"))
+  ;; (message (concat exclude-option other-option))
+  (setq ffip-find-options (concat exclude-option other-option)))
+
 
 (setq ffip-project-file '(".project" ".git"))
 ;; (setq ffip-project-file ".git")
 ; TODO: define local patterns, local excludes bind to perspective
 (setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
-   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.xml" "*.properties" "*.hs"))
+   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.xml" "*.properties" "*.hs" "*.coffee"))
 
 (if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 
