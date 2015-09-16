@@ -180,7 +180,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "Consolas-10")
+(set-default-font "Ubuntu Mono-10")
 
 ;; disable auto backup
 (setq make-backup-files nil)
@@ -464,8 +464,8 @@ region-end is used."
 
 
 ;; nxhtml
-(add-to-list 'load-path "~/emacs/plugins/nxhtml")
-(load "~/emacs/plugins/nxhtml/autostart.el")
+(add-to-list 'load-path "~/emacs/plugins/nxhtml/elisp")
+(load "~/emacs/plugins/nxhtml/elisp/autostart.el")
 (setq mumamo-background-colors nil)
 
 
