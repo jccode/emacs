@@ -184,7 +184,6 @@ region-end is used."
 (set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
-
 ;; disable auto backup
 (setq make-backup-files nil)
 
