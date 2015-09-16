@@ -2,9 +2,10 @@
 
 ;; variable
 (setq dropbox-d (if windows-p "D:/Dropbox" "~/Dropbox"))
-(setq note-d (concat dropbox-d "/note/"))
-(setq todo-d (concat dropbox-d "/task/"))
-(setq task-file (concat dropbox-d "/task/task.org"))
+(setq kuaipan-d (if windows-p "D:/KuaiPan" "~/KuaiPan"))
+(setq note-d (concat kuaipan-d "/note/"))
+(setq todo-d (concat kuaipan-d "/task/"))
+(setq task-file (concat kuaipan-d "/task/task.org"))
 
 
 ;; function definition
