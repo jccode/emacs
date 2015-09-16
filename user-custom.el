@@ -32,7 +32,7 @@
   (interactive)
   (custom-persp "note"
                 (let (root)
-                  (setq root (concat dropbox-d "/note/"))
+                  (setq root note-d)
                   (find-file root))
                 ))
 
@@ -44,7 +44,7 @@
 (defun custom-persp/task ()
   (interactive)
   (custom-persp "todo"
-                (let ((root (concat dropbox-d "/task")))
+                (let ((root todo-d))
                    (find-file root))))
 
 (define-key persp-mode-map (kbd "C-x p n") 'custom-persp/note)
