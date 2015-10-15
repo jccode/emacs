@@ -180,7 +180,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "consolas-10")        ;consolas-10
+(set-default-font "Ubuntu Mono-10")        ;consolas-10
 (set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -763,11 +763,18 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/coffee-mode/")
 (require 'coffee-mode)
 
+(defun my/coffee-compile-file ()
+  (interactive)
+  (coffee-compile-file)
+  (when reload-on-save
+    (reload)))
+
 ;; defined custom key-bindings
 (eval-after-load "coffee-mode"
   '(progn
      (setq coffee-indent-tabs-mode t)
-     (define-key coffee-mode-map (kbd "C-c C-c") 'coffee-compile-file)))
+     (define-key coffee-mode-map (kbd "C-c C-c") 'my/coffee-compile-file))) ;coffee-compile-file
+
 
 
 
@@ -937,7 +944,6 @@ region-end is used."
                                            (string-match-p "\\.js$" filename))
                                    (reload))))
                              ))
-
 
 
 ;;--------------------------------
