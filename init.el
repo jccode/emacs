@@ -184,11 +184,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-<<<<<<< b5eb4938c49db83c3c648130323df078eb646a70
 (set-default-font "Ubuntu Mono-10")        ;consolas-10
-=======
-(set-default-font "consolas-10")        ;consolas-10
->>>>>>> add chinese font family setting
 (set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
