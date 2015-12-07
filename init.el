@@ -521,6 +521,7 @@ region-end is used."
        '("node_modules"
          "bower_components"
          "target"
+         "platforms"
          )))
       (other-option '" -not -path '*/\.*'"))
   ;; (message (concat exclude-option other-option))
@@ -828,6 +829,7 @@ region-end is used."
 ;; scss
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
 
 
 ;; plantuml
