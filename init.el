@@ -5,8 +5,12 @@
 ;;------------------
 (defvar windows-p (string-match "windows" (symbol-name system-type)))
 ;; (if windows-p (message "it's windows") (message "it's linux"))
-(defvar reload-on-save nil)
 (defvar kill-complation-buffer nil)
+;; (defvar reload-on-save nil)
+(defcustom reload-on-save nil
+  "*whether reload when editing html files"
+  :type 'boolean
+  :group 'my)
 
 
 ;;---------------
