@@ -470,9 +470,10 @@ region-end is used."
 
 
 ;; nxhtml
-(add-to-list 'load-path "~/emacs/plugins/nxhtml/elisp")
-(load "~/emacs/plugins/nxhtml/elisp/autostart.el")
-(setq mumamo-background-colors nil)
+
+;; (add-to-list 'load-path "~/emacs/plugins/nxhtml/elisp")
+;; (load "~/emacs/plugins/nxhtml/elisp/autostart.el")
+;; (setq mumamo-background-colors nil)
 
 
 
@@ -725,6 +726,10 @@ region-end is used."
   (dirtree-in-buffer (ffip-project-root) t))
 
 
+;; dockerfile mode
+(add-to-list 'load-path "~/emacs/plugins/dockerfile-mode")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 
 ;; ------------------------

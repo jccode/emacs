@@ -84,3 +84,6 @@
 [submodule "plugins/company-mode"]
 	path = plugins/company-mode
 	url = https://github.com/company-mode/company-mode.git
+[submodule "plugins/dockerfile-mode"]
+	path = plugins/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
