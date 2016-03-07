@@ -192,7 +192,7 @@ region-end is used."
 (setq make-backup-files nil)
 
 ;; show line number
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; highline parentheses match
 (show-paren-mode 1)
@@ -345,6 +345,7 @@ region-end is used."
 ;; -----------------
 ;; Plugins
 ;; -----------------
+
 
 
 ;; zen coding
@@ -926,6 +927,26 @@ region-end is used."
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
+
+;; Free distraction mode
+(require 'olivetti)
+(setq-default olivetti-body-width 0.5)
+
+(defun jc/toggle-writing-mode ()
+  "Toggle a distraction-free environment for writing."
+  (interactive)
+  (cond ((bound-and-true-p olivetti-mode)
+         (olivetti-mode -1)
+         (olivetti-toggle-hide-mode-line)
+         (toggle-frame-fullscreen)
+         (menu-bar-mode 1))
+        (t
+         (olivetti-mode 1)
+         (olivetti-toggle-hide-mode-line)
+         (toggle-frame-fullscreen)
+         (menu-bar-mode -1))))
+
+(global-set-key (kbd "<S-f11>") 'jc/toggle-writing-mode)
 
 
 
