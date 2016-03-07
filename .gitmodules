@@ -27,7 +27,7 @@
 	url = git://github.com/skeeto/skewer-mode.git
 [submodule "plugins/nxhtml"]
 	path = plugins/nxhtml
-	url = git://github.com/emacsmirror/nxhtml.git
+	url = git@github.com:jccode/nxhtml.git
 	ignore = dirty
 [submodule "plugins/emacs-for-python"]
 	path = plugins/emacs-for-python

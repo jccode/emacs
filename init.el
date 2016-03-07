@@ -814,7 +814,7 @@ region-end is used."
 
 
 ;; sgml mode
-(add-hook 'nxhtml-mode-hook (lambda () 
+(add-hook 'sgml-mode-hook (lambda () 
   (interactive)
   (local-set-key (kbd "C-c C-w") 'html-wrap-in-tag)
   ))
