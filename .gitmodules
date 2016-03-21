@@ -87,3 +87,6 @@
 [submodule "plugins/dockerfile-mode"]
 	path = plugins/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "plugins/web-mode"]
+	path = plugins/web-mode
+	url = https://github.com/fxbois/web-mode.git
