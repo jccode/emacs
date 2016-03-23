@@ -91,3 +91,6 @@
 	path = plugins/web-mode
 	url = https://github.com/fxbois/web-mode.git
 
+[submodule "plugins/es6-snippets"]
+	path = plugins/es6-snippets
+	url = https://github.com/CodyReichert/es6-snippets.git

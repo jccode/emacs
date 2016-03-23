@@ -364,6 +364,10 @@ region-end is used."
 (yas-minor-mode-on)
 
 
+;; es6 snippet
+(add-to-list 'load-path "~/emacs/plugins/es6-snippets")
+(require 'es6-snippets)
+
 ;; auto-complete
 (add-to-list 'load-path "~/emacs/plugins/popup-el")
 (add-to-list 'load-path "~/emacs/plugins/auto-complete")
@@ -677,7 +681,9 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/js2-mode")
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
 
 
 ;; groovy
@@ -999,6 +1005,4 @@ region-end is used."
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
 (load (concat emacs-directory "/pwd.el"))
-
-
 
