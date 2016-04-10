@@ -351,7 +351,7 @@ region-end is used."
 ;; zen coding
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(add-hook 'nxhtml-mode-hook 'zencoding-mode)
+(add-hook 'web-mode-hook 'zencoding-mode)
 ;; reset key bind
 (define-key zencoding-mode-keymap (kbd "<C-return>") nil)
 (define-key zencoding-mode-keymap (kbd "<C-M-return>") 'zencoding-expand-line)
@@ -774,6 +774,13 @@ region-end is used."
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+;; tags
+;; (custom-set-variables '(haskell-tags-on-save t))
+(setq haskell-tags-on-save t)
+(speedbar-add-supported-extension ".hs")
+
+
 
 
 ;; coffee-script
