@@ -778,6 +778,7 @@ region-end is used."
 ;; tags
 ;; (custom-set-variables '(haskell-tags-on-save t))
 (setq haskell-tags-on-save t)
+(require 'speedbar)
 (speedbar-add-supported-extension ".hs")
 
 
