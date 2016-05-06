@@ -543,7 +543,7 @@ region-end is used."
 ;; (setq ffip-project-file ".git")
 ; TODO: define local patterns, local excludes bind to perspective
 (setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
-   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.xml" "*.properties" "*.hs" "*.coffee"))
+   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.scss" "*.xml" "*.properties" "*.hs" "*.coffee"))
 
 (if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 

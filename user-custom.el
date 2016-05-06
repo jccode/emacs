@@ -3,9 +3,10 @@
 ;; variable
 (setq dropbox-d (if windows-p "D:/Dropbox" "~/Dropbox"))
 (setq kuaipan-d (if windows-p "D:/KuaiPan" "~/KuaiPan"))
-(setq note-d (concat kuaipan-d "/note/"))
-(setq todo-d (concat kuaipan-d "/task/"))
-(setq task-file (concat kuaipan-d "/task/task.org"))
+(setq owncloud-d (if windows-p "D:/ownCloud" "~/ownCloud"))
+(setq note-d (concat owncloud-d "/note/"))
+(setq todo-d (concat owncloud-d "/task/"))
+(setq task-file (concat owncloud-d "/task/task.org"))
 
 
 ;; function definition
