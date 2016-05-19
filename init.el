@@ -965,6 +965,19 @@ region-end is used."
 (global-set-key (kbd "<S-f11>") 'jc/toggle-writing-mode)
 
 
+;; highlight-tail mode
+(require 'highlight-tail)
+(message "Highlight-tail loaded - now your Emacs will be even more sexy!")
+;;
+;; [ here some setq of variables - see CONFIGURATION section below ]
+;; (setq highlight-tail-colors '(("black" . 0)
+;;                               ("#bc2525" . 25)
+;;                               ("black" . 66)))
+(setq highlight-tail-steps 40
+      highlight-tail-timer 0.04)
+;;
+(highlight-tail-mode)
+
 
 ;;--------------------------------
 ;; package
