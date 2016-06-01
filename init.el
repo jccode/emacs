@@ -974,7 +974,7 @@ region-end is used."
 ;;                               ("#bc2525" . 25)
 ;;                               ("black" . 66)))
 (setq highlight-tail-steps 40
-      highlight-tail-timer 0.04)
+      highlight-tail-timer 0.02)
 ;;
 (highlight-tail-mode)
 
