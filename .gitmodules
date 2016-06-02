@@ -91,3 +91,6 @@
 [submodule "plugins/es6-snippets"]
 	path = plugins/es6-snippets
 	url = https://github.com/CodyReichert/es6-snippets.git
+[submodule "plugins/yasnippet"]
+	path = plugins/yasnippet
+	url = https://github.com/joaotavora/yasnippet.git

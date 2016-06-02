@@ -363,6 +363,7 @@ region-end is used."
 (yas-global-mode 1)
 (yas-minor-mode-on)
 
+;; (add-to-list 'yas-snippet-dirs "~/emacs/plugins/my-yasnippet-snippets")
 
 ;; es6 snippet
 (add-to-list 'load-path "~/emacs/plugins/es6-snippets")
