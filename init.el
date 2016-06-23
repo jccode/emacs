@@ -484,7 +484,6 @@ region-end is used."
 
 
 
-
 ;; find-file-in-project
 (require 'find-file-in-project)
 
@@ -652,6 +651,8 @@ region-end is used."
 (wrap-region-global-mode t)
 
 
+(add-to-list 'load-path "~/emacs/plugins/linum-relative")
+(require 'linum-relative)
 
 
 ;; jedi

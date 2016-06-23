@@ -94,3 +94,6 @@
 [submodule "plugins/yasnippet"]
 	path = plugins/yasnippet
 	url = https://github.com/joaotavora/yasnippet.git
+[submodule "plugins/linum-relative"]
+	path = plugins/linum-relative
+	url = https://github.com/coldnew/linum-relative.git
