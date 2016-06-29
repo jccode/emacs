@@ -70,7 +70,9 @@
       
       ;; if less-css-mode reload page
       (when (with-current-buffer buffer
-            (search-forward "lessc" nil t))
+              (or 
+               (search-forward "lessc" nil t)
+               (search-forward "sass" nil t)))
           (reload)
       )))
   (cons msg code))
