@@ -97,3 +97,6 @@
 [submodule "plugins/linum-relative"]
 	path = plugins/linum-relative
 	url = https://github.com/coldnew/linum-relative.git
+[submodule "plugins/enhanced-ruby-mode"]
+	path = plugins/enhanced-ruby-mode
+	url = https://github.com/zenspider/enhanced-ruby-mode.git
