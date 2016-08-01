@@ -689,6 +689,8 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
 
+(setq js2-strict-missing-semi-warning nil)
+
 
 ;; groovy
 (add-to-list 'load-path "~/emacs/plugins/emacs-groovy-mode")
@@ -786,6 +788,13 @@ region-end is used."
 (speedbar-add-supported-extension ".hs")
 
 
+;; TAGS
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )
 
 
 ;; coffee-script
