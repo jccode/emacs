@@ -695,8 +695,8 @@ region-end is used."
 
 
 ;; org-impress-js
-(add-to-list 'load-path "~/emacs/plugins/org-impress-js")
-(require 'org-impress-js)
+;; (add-to-list 'load-path "~/emacs/plugins/org-impress-js")
+;; (require 'org-impress-js)
 
 
 ;; cal-china-x
