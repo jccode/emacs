@@ -905,6 +905,8 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (setq markdown-content-type "utf-8")
+;; pointing to markdown command
+(custom-set-variables '(markdown-command "/usr/local/bin/markdown"))
 
 
 ;; angular js snippets
@@ -928,7 +930,7 @@ region-end is used."
 ;; this line only needed when `tern` cannot start correctly.
 ;; e.g. "~/emacs" dir install in a windows partition.
 ;; in this case, you need to install `tern` command manually via `npm install -g tern`
-(setq tern-command (list "tern"))
+;; (setq tern-command (list "tern"))
 
 
 ;; common lisp SLIME
@@ -988,6 +990,7 @@ region-end is used."
 ;; highlight-tail mode
 (require 'highlight-tail)
 (message "Highlight-tail loaded - now your Emacs will be even more sexy!")
+
 ;;
 ;; [ here some setq of variables - see CONFIGURATION section below ]
 ;; (setq highlight-tail-colors '(("black" . 0)
@@ -995,8 +998,8 @@ region-end is used."
 ;;                               ("black" . 66)))
 (setq highlight-tail-steps 40
       highlight-tail-timer 0.02)
-;;
-(highlight-tail-mode)
+
+;; (highlight-tail-mode)
 
 
 ;;--------------------------------
