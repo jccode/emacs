@@ -822,6 +822,13 @@ region-end is used."
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 
+;; po-mode
+(autoload 'po-mode "po-mode"
+  "Major mode for translators to edit PO files" t)
+(setq auto-mode-alist (cons '("\\.po\\'\\|\\.po\\." . po-mode)
+                            auto-mode-alist))
+
+
 
 ;;---------------
 ;; Mode Setting
