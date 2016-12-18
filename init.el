@@ -240,8 +240,10 @@ region-end is used."
 
 ;; Emacs server
 (require 'server)
+(setq server-socket-dir "~/.emacs.d/server")
 (unless (server-running-p)
   (server-start))
+
 
 
 ;; turn on auto revert mode
