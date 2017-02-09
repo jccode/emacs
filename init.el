@@ -17,7 +17,8 @@
 ;; Load plugins
 ;;---------------
 (setq emacs-directory "~/emacs")
-(add-to-list 'load-path (concat emacs-directory "/plugins"))
+(setq plugin-directory (concat emacs-directory "/plugins"))
+(add-to-list 'load-path plugin-directory)
 (add-to-list 'load-path (concat emacs-directory "/themes"))
 
 
@@ -1043,6 +1044,10 @@ region-end is used."
 ;;--------------------------------
 (load (concat emacs-directory "/org-jekyll.el"))
 (require 'org-jekyll)
+
+;; ox-impress-js
+(add-to-list 'load-path (concat plugin-directory "/org-impress-js.el-org-8.2.10"))
+(require 'ox-impress-js)
 
 
 ;;--------------------------------
