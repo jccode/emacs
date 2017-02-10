@@ -1049,6 +1049,9 @@ region-end is used."
 (add-to-list 'load-path (concat plugin-directory "/org-impress-js.el-org-8.2.10"))
 (require 'ox-impress-js)
 
+(add-to-list 'org-export-backends 'taskjuggler)
+(require 'ox-taskjuggler)
+
 
 ;;--------------------------------
 ;; Others
