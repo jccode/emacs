@@ -721,7 +721,7 @@ region-end is used."
 
 ;; org-impress-js
 (add-to-list 'load-path "~/emacs/plugins/org-impress-js")
-(require 'org-impress-js)
+(require 'ox-impress-js)
 
 
 ;; cal-china-x
@@ -958,8 +958,9 @@ region-end is used."
 ;; 
 ;; scala
 ;;
-(add-to-list 'load-path "~/emacs/plugins/scala-mode2/")
-(require 'scala-mode2)
+;; (add-to-list 'load-path "~/emacs/plugins/scala-mode2/")
+;; (require 'scala-mode2)
+
 
 (add-to-list 'load-path "~/emacs/plugins/sbt-mode/")
 (require 'sbt-mode)
@@ -972,8 +973,8 @@ region-end is used."
 ;; (setenv "PATH" (concat "/path/to/sbt/bin:" (getenv "PATH")))
 ;; (setenv "PATH" (concat "/path/to/scala/bin:" (getenv "PATH")))
 ;; You can also customize `ensime-inf-get-project-root' and `ensime-inf-get-repl-cmd-line'
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (require 'ensime)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
 ;; Free distraction mode
