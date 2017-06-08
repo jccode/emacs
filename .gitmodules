@@ -66,9 +66,6 @@
 [submodule "plugins/tern"]
 	path = plugins/tern
 	url = git@github.com:marijnh/tern.git
-[submodule "plugins/scala-mode2"]
-	path = plugins/scala-mode2
-	url = git@github.com:hvesalai/scala-mode2.git
 [submodule "plugins/ensime-emacs"]
 	path = plugins/ensime-emacs
 	url = https://github.com/ensime/ensime-emacs.git
