@@ -666,8 +666,8 @@ region-end is used."
 
 
 ;; dash
-(add-to-list 'load-path "~/emacs/plugins/dash")
-(require 'dash)
+;; (add-to-list 'load-path "~/emacs/plugins/dash")
+;; (require 'dash)
 
 ;; wrap-region
 (add-to-list 'load-path "~/emacs/plugins/wrap-region")
@@ -1034,21 +1034,20 @@ region-end is used."
 
 
 
-;; (use-package ensime
-;;   :ensure t
-;;   :pin melpa-stable)
+(use-package ensime
+  :ensure t
+  :pin melpa-stable)
 
-;; (use-package sbt-mode
-;;   :pin melpa-stable)
+(use-package sbt-mode
+  :pin melpa-stable)
 
-;; (use-package scala-mode
-;;   :pin melpa-stable)
+(use-package scala-mode
+  :pin melpa-stable)
 
-
-;; (require 'ensime)
-;; (require 'scala-mode)
-;; (require 'sbt-mode)
-;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(require 'ensime)
+(require 'scala-mode)
+(require 'sbt-mode)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
 
