@@ -22,6 +22,21 @@
 (add-to-list 'load-path (concat emacs-directory "/themes"))
 
 
+;;--------------------------------
+;; package
+;;--------------------------------
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+(add-to-list 'load-path "~/emacs/plugins/use-package")
+(require 'use-package)
 
 
 ;;----------------
@@ -967,10 +982,10 @@ region-end is used."
 ;; (require 'scala-mode2)
 
 
-(add-to-list 'load-path "~/emacs/plugins/sbt-mode/")
-(require 'sbt-mode)
+;; (add-to-list 'load-path "~/emacs/plugins/sbt-mode/")
+;; (require 'sbt-mode)
 
-(add-to-list 'load-path "~/emacs/plugins/ensime-emacs/")
+;; (add-to-list 'load-path "~/emacs/plugins/ensime-emacs/")
 
 ;; If necessary, add JDK_HOME or JAVA_HOME to the environment
 ;; (setenv "JDK_HOME" "/path/to/jdk")
@@ -1018,12 +1033,23 @@ region-end is used."
 ;; (highlight-tail-mode)
 
 
-;;--------------------------------
-;; package
-;;--------------------------------
-(require 'package)
-(add-to-list 'package-archives 
-  '("marmalade" . "http://marmalade-repo.org/packages/") t) (package-initialize)
+
+;; (use-package ensime
+;;   :ensure t
+;;   :pin melpa-stable)
+
+;; (use-package sbt-mode
+;;   :pin melpa-stable)
+
+;; (use-package scala-mode
+;;   :pin melpa-stable)
+
+
+;; (require 'ensime)
+;; (require 'scala-mode)
+;; (require 'sbt-mode)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
 
 
 

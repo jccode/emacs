@@ -97,3 +97,6 @@
 [submodule "plugins/enhanced-ruby-mode"]
 	path = plugins/enhanced-ruby-mode
 	url = https://github.com/zenspider/enhanced-ruby-mode.git
+[submodule "plugins/use-package"]
+	path = plugins/use-package
+	url = https://github.com/jwiegley/use-package.git
