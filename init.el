@@ -915,7 +915,7 @@ region-end is used."
 (require 'less-css-mode)
 (add-hook 'less-css-mode-hook (lambda ()
   (interactive)
-  (auto-complete-mde t)
+  (auto-complete-mode t)
   ))
 ;; (setq less-css-compile-at-save t)       ;compile at save
 
@@ -964,13 +964,21 @@ region-end is used."
 (eval-after-load "sgml-mode"
   '(define-key html-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point))
 
+
+;; company-mode. required by scala-mode
+(add-to-list 'load-path "~/emacs/plugins/company-mode/")
+(require 'company)
+
+
 ;; 
 ;; tern
 ;; http://ternjs.net/doc/manual.html
 ;; 
+;; Also, make sure the dependencies of tern are installed: Run `npm install` under ~/emacs/plugins/tern
+;; 
 (add-to-list 'load-path "~/emacs/plugins/tern/emacs/")
 (autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(add-hook 'js2-mode-hook (lambda () (auto-complete-mode t) (tern-mode t)))
 (eval-after-load 'tern
    '(progn
       (require 'tern-auto-complete)
@@ -990,9 +998,6 @@ region-end is used."
     (setq inferior-lisp-program "/usr/bin/sbcl")))
 
 
-;; company-mode. required by scala-mode
-(add-to-list 'load-path "~/emacs/plugins/company-mode/")
-(require 'company)
 
 ;; 
 ;; scala
