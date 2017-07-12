@@ -856,6 +856,10 @@ region-end is used."
      (define-key coffee-mode-map (kbd "C-c C-c") 'my/coffee-compile-file))) ;coffee-compile-file
 
 
+;; rvm
+(add-to-list 'load-path "~/emacs/plugins/rvm")
+(require 'rvm)
+(rvm-use-default)
 
 ;; ruby
 (add-to-list 'load-path "~/emacs/plugins/enhanced-ruby-mode") ; must be added after any path containing old ruby-mode
