@@ -683,6 +683,13 @@ region-end is used."
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
+;; editorconfig
+(use-package editorconfig
+  :ensure t
+  :pin melpa-stable
+  :config
+  (editorconfig-mode 1))
+
 
 ;; dash
 ;; (add-to-list 'load-path "~/emacs/plugins/dash")
