@@ -180,7 +180,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "Consolas-10")
+;(set-default-font "Consolas-10")
 
 ;; disable auto backup
 (setq make-backup-files nil)
