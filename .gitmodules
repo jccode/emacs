@@ -83,3 +83,6 @@
 [submodule "plugins/nxhtml"]
 	path = plugins/nxhtml
 	url = https://github.com/jwiegley/nxhtml.git
+[submodule "plugins/emacs-ansible"]
+	path = plugins/emacs-ansible
+	url = https://github.com/k1LoW/emacs-ansible.git

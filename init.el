@@ -17,8 +17,6 @@
 (add-to-list 'load-path (concat emacs-directory "/themes"))
 
 
-
-
 ;;----------------
 ;; Function define
 ;;----------------
@@ -336,6 +334,15 @@ region-end is used."
 ;; (global-set-key "\C-co" 'switch-to-minibuffer) ;; Bind to `C-c o'
 
 
+;; 
+;; Load path, especially on OSX
+;;
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
+
 ;; -----------------
 ;; Plugins
 ;; -----------------
@@ -344,7 +351,8 @@ region-end is used."
 ;; zen coding
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(add-hook 'nxhtml-mode-hook 'zencoding-mode)
+;; (add-hook 'nxhtml-mode-hook 'zencoding-mode)
+(add-hook 'web-mode-hook 'zencoding-mode)
 ;; reset key bind
 (define-key zencoding-mode-keymap (kbd "<C-return>") nil)
 (define-key zencoding-mode-keymap (kbd "<C-M-return>") 'zencoding-expand-line)
@@ -692,6 +700,12 @@ region-end is used."
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\.yml$" . yaml-mode))
 
+
+;; ansible
+;; enable ansible-mode by : M-x ansible
+(add-to-list 'load-path "~/emacs/plugins/emacs-ansible/")
+(require 'ansible)
+(add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 
 
 ;; org-impress-js
