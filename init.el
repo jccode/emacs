@@ -922,6 +922,12 @@ region-end is used."
 
 
 
+;; ruby, rvm.el. fixxed ruby gem not found issue on OSX.
+;; via: https://stackoverflow.com/questions/6346443/emacs-shell-cant-find-ruby-gems-e-g-could-not-find-rubygem-haml-0-ge
+(require 'rvm)
+(rvm-use-default) ;; use rvm's default ruby for the current Emacs session
+
+
 
 ;;--------------------------------
 ;; package
@@ -945,6 +951,7 @@ region-end is used."
                                  (when (or (string-match-p "\\.html$" filename)
                                            (string-match-p "\\.htm$" filename)
                                            (string-match-p "\\.css$" filename)
+                                           (string-match-p "\\.scss$" filename)
                                            (string-match-p "\\.js$" filename))
                                    (reload))))
                              ))
