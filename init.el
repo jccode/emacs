@@ -948,6 +948,9 @@ region-end is used."
   '("marmalade" . "http://marmalade-repo.org/packages/") t) (package-initialize)
 
 
+;; (require 'fcitx)
+;; (fcitx-default-setup)
+
 
 ;;------------------------------
 ;; My hook
