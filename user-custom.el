@@ -3,7 +3,7 @@
 ;; variable
 (setq dropbox-d (if windows-p "D:/Dropbox" "~/Dropbox"))
 (setq kuaipan-d (if windows-p "D:/KuaiPan" "~/KuaiPan"))
-(setq owncloud-d (if windows-p "D:/ownCloud" "~/ownCloud"))
+(setq owncloud-d (if windows-p "c:/Users/01372461/ownCloud" "~/ownCloud"))
 (setq note-d (concat owncloud-d "/note/"))
 (setq todo-d (concat owncloud-d "/task/"))
 (setq task-file (concat owncloud-d "/task/task.org"))
@@ -26,6 +26,13 @@
 (define-key ctrl-x-j-map (kbd "p d") 'decrypt-password)
 (define-key ctrl-x-j-map (kbd "d s") 'dirtree-prj)
 (define-key ctrl-x-j-map (kbd "d b") 'dirtree-prj-in-buffer)
+
+;; string case
+(define-key ctrl-x-j-map (kbd "c a") 'string-inflection-all-cycle)
+(define-key ctrl-x-j-map (kbd "c c") 'string-inflection-lower-camelcase)
+(define-key ctrl-x-j-map (kbd "c _") 'string-inflection-underscore)
+(define-key ctrl-x-j-map (kbd "c -") 'string-inflection-kebab-case)
+
 
 
 ;; custom perspective

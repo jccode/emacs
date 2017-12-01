@@ -732,6 +732,7 @@ region-end is used."
   (dirtree-in-buffer (ffip-project-root) t))
 
 
+(require 'string-inflection)
 
 
 ;; ------------------------
@@ -835,17 +836,27 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 
-;; plantuml
+;; plantuml (https://github.com/skuro/plantuml-mode)
+;; 
 ;; active org-babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(;; other Babel languages
    (plantuml . t)))
 
-(setq org-plantuml-jar-path
+;; plantuml-jar-path, org-plantuml-jar-path
+(setq plantuml-jar-path
       (expand-file-name "~/emacs/res/plantuml.jar"))
 
 (require 'plantuml-mode)
+
+;; Enable plantuml-mode for PlantUML files
+(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+
+;; Integration with org-mode
+;;  edit a plantuml code block with plantuml-mode by hitting C-' while inside of the code block itself.
+(add-to-list
+  'org-src-lang-modes '("plantuml" . plantuml))
 
 ;; when load plantuml-mode at startup.
 ;; emacs will split window to vertical. the below window shows *Message* buffer.
