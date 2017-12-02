@@ -738,6 +738,7 @@ region-end is used."
 ;; restclient
 (add-to-list 'load-path "~/emacs/plugins/restclient/")
 (require 'restclient)
+(add-to-list 'auto-mode-alist '("\\.restclient\\'" . restclient-mode))
 
 
 
