@@ -383,7 +383,7 @@ region-end is used."
 ;; (global-smart-tab-mode 1)
 
 ;; json
-;(require 'json)
+;; (require 'json)
 
 
 ;; multiple-cursor
@@ -733,6 +733,12 @@ region-end is used."
 
 
 (require 'string-inflection)
+
+
+;; restclient
+(add-to-list 'load-path "~/emacs/plugins/restclient/")
+(require 'restclient)
+
 
 
 ;; ------------------------

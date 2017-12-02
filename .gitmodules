@@ -86,3 +86,6 @@
 [submodule "plugins/emacs-ansible"]
 	path = plugins/emacs-ansible
 	url = https://github.com/k1LoW/emacs-ansible.git
+[submodule "plugins/restclient"]
+	path = plugins/restclient
+	url = https://github.com/pashky/restclient.el.git
