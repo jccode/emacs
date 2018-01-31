@@ -364,6 +364,9 @@ region-end is used."
 (yas-global-mode 1)
 (yas-minor-mode-on)
 
+;; snippets
+(add-to-list 'load-path "~/emacs/plugins/yasnippet-snippets")
+(require 'yasnippet-snippets)
 
 ;; auto-complete
 (add-to-list 'load-path "~/emacs/plugins/popup-el")

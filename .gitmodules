@@ -89,3 +89,6 @@
 [submodule "plugins/restclient"]
 	path = plugins/restclient
 	url = https://github.com/pashky/restclient.el.git
+[submodule "plugins/yasnippet-snippets"]
+	path = plugins/yasnippet-snippets
+	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
