@@ -6,6 +6,7 @@
 (setq owncloud-d (if windows-p "c:/Users/01372461/ownCloud" "~/ownCloud"))
 (setq note-d (concat owncloud-d "/note/"))
 (setq todo-d (concat owncloud-d "/task/"))
+(setq work-d (concat owncloud-d "/work/sf/"))
 (setq task-file (concat owncloud-d "/task/task.org"))
 
 
@@ -33,6 +34,9 @@
 (define-key ctrl-x-j-map (kbd "c _") 'string-inflection-underscore)
 (define-key ctrl-x-j-map (kbd "c -") 'string-inflection-kebab-case)
 
+;; base64
+(define-key ctrl-x-j-map (kbd "b e") 'base64-encode-region)
+(define-key ctrl-x-j-map (kbd "b d") 'base64-decode-region)
 
 
 ;; custom perspective
@@ -53,11 +57,18 @@
   (interactive)
   (custom-persp "todo"
                 (let ((root todo-d))
-                   (find-file root))))
+                  (find-file root))))
+
+(defun custom-persp/work ()
+  (interactive)
+  (custom-persp "work"
+                (let ((root work-d))
+                  (find-file root))))
 
 (define-key persp-mode-map (kbd "C-x p n") 'custom-persp/note)
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
 (define-key persp-mode-map (kbd "C-x p t") 'custom-persp/task)
+(define-key persp-mode-map (kbd "C-x p w") 'custom-persp/work)
 
 ;; org-agenda-files
 (setq org-agenda-files (list todo-d))

@@ -178,7 +178,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-;(set-default-font "Consolas-10")
+(set-default-font "Consolas-10")
 
 ;; disable auto backup
 (setq make-backup-files nil)
@@ -738,6 +738,7 @@ region-end is used."
 ;; restclient
 (add-to-list 'load-path "~/emacs/plugins/restclient/")
 (require 'restclient)
+(setq restclient-inhibit-cookies t)
 (add-to-list 'auto-mode-alist '("\\.restclient\\'" . restclient-mode))
 
 
@@ -945,6 +946,8 @@ region-end is used."
 (require 'rvm)
 (rvm-use-default) ;; use rvm's default ruby for the current Emacs session
 
+
+(autoload 'xahk-mode "xahk-mode" "Load xahk-mode for editing AutoHotkey scripts." t)
 
 
 ;;--------------------------------
