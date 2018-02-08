@@ -213,7 +213,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "Ubuntu Mono-10")        ;consolas-10
+(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
 (set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -221,7 +221,7 @@ region-end is used."
 (setq make-backup-files nil)
 
 ;; show line number
-;; (global-linum-mode t)
+(global-linum-mode t)
 
 ;; highline parentheses match
 (show-paren-mode 1)
@@ -403,10 +403,8 @@ region-end is used."
 ;; zen coding
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-<<<<<<< HEAD
 ;; (add-hook 'nxhtml-mode-hook 'zencoding-mode)
-=======
->>>>>>> origin/kubuntu
+
 (add-hook 'web-mode-hook 'zencoding-mode)
 ;; reset key bind
 (define-key zencoding-mode-keymap (kbd "<C-return>") nil)
@@ -701,6 +699,7 @@ region-end is used."
 
 
 ;; scala
+
 (use-package ensime
   :ensure t
   :pin melpa-stable)
@@ -718,6 +717,7 @@ region-end is used."
 
 
 ;; editorconfig
+
 (use-package editorconfig
   :ensure t
   :pin melpa-stable
@@ -726,8 +726,8 @@ region-end is used."
 
 
 ;; dash
-;; (add-to-list 'load-path "~/emacs/plugins/dash")
-;; (require 'dash)
+(add-to-list 'load-path "~/emacs/plugins/dash")
+(require 'dash)
 
 ;; wrap-region
 (add-to-list 'load-path "~/emacs/plugins/wrap-region")
@@ -807,7 +807,7 @@ region-end is used."
 
 ;; org-impress-js
 (add-to-list 'load-path "~/emacs/plugins/org-impress-js")
-(require 'ox-impress-js)
+(require 'org-impress-js)
 
 
 ;; cal-china-x
