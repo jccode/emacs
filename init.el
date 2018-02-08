@@ -172,6 +172,15 @@ region-end is used."
       (select-window (active-minibuffer-window))
     (error "Minibuffer is not active")))
 
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph    
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        ;; This would override `fill-column' if it's an integer.
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
+
 
 ;;---------------
 ;; Common
@@ -239,6 +248,9 @@ region-end is used."
 
 ;; coding
 (define-coding-system-alias 'UTF-8 'utf-8)
+
+(global-visual-line-mode t)
+
 
 ;;---------------
 ;; Indent setting
@@ -333,8 +345,9 @@ region-end is used."
 ;; (global-set-key (kbd "C-c o") 'switch-to-minibuffer)
 ;; (global-set-key "\C-co" 'switch-to-minibuffer) ;; Bind to `C-c o'
 
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
 
-;; 
+;;
 ;; Load path, especially on OSX
 ;;
 (require 'exec-path-from-shell)
@@ -347,6 +360,9 @@ region-end is used."
 ;; Plugins
 ;; -----------------
 
+(require 'visual-fill-column)
+(global-visual-fill-column-mode 1)
+(add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
 ;; zen coding
 (require 'zencoding-mode)
@@ -814,8 +830,8 @@ region-end is used."
 (add-hook 'org-mode-hook (lambda ()
   (interactive)
   (auto-complete-mode t)
-  ;; (visual-line-mode)
-  (auto-fill-mode t)
+  (visual-line-mode)
+  ;; (auto-fill-mode t)
   (electric-indent-mode 0)
   ))
 
