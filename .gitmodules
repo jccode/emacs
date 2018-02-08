@@ -4,9 +4,6 @@
 [submodule "plugins/auto-complete"]
 	path = plugins/auto-complete
 	url = git://github.com/auto-complete/auto-complete.git
-[submodule "plugins/yasnippet"]
-	path = plugins/yasnippet
-	url = git://github.com/jccode/yasnippet.git
 [submodule "plugins/multiple-cursors"]
 	path = plugins/multiple-cursors
 	url = git://github.com/jccode/multiple-cursors.el.git
@@ -25,6 +22,10 @@
 [submodule "plugins/skewer-mode"]
 	path = plugins/skewer-mode
 	url = git://github.com/skeeto/skewer-mode.git
+[submodule "plugins/nxhtml"]
+	path = plugins/nxhtml
+	url = git@github.com:jccode/nxhtml.git
+	ignore = dirty
 [submodule "plugins/emacs-for-python"]
 	path = plugins/emacs-for-python
 	url = git://github.com/gabrielelanaro/emacs-for-python.git
@@ -65,9 +66,6 @@
 [submodule "plugins/tern"]
 	path = plugins/tern
 	url = git@github.com:marijnh/tern.git
-[submodule "plugins/scala-mode2"]
-	path = plugins/scala-mode2
-	url = git@github.com:hvesalai/scala-mode2.git
 [submodule "plugins/ensime-emacs"]
 	path = plugins/ensime-emacs
 	url = https://github.com/ensime/ensime-emacs.git
@@ -92,3 +90,25 @@
 [submodule "plugins/yasnippet-snippets"]
 	path = plugins/yasnippet-snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
+[submodule "plugins/dockerfile-mode"]
+	path = plugins/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "plugins/web-mode"]
+	path = plugins/web-mode
+	url = https://github.com/fxbois/web-mode.git
+[submodule "plugins/es6-snippets"]
+	path = plugins/es6-snippets
+	url = https://github.com/CodyReichert/es6-snippets.git
+[submodule "plugins/yasnippet"]
+	path = plugins/yasnippet
+	url = https://github.com/joaotavora/yasnippet.git
+[submodule "plugins/linum-relative"]
+	path = plugins/linum-relative
+	url = https://github.com/coldnew/linum-relative.git
+[submodule "plugins/enhanced-ruby-mode"]
+	path = plugins/enhanced-ruby-mode
+	url = https://github.com/zenspider/enhanced-ruby-mode.git
+[submodule "plugins/use-package"]
+	path = plugins/use-package
+	url = https://github.com/jwiegley/use-package.git
+

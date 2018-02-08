@@ -5,16 +5,40 @@
 ;;------------------
 (defvar windows-p (string-match "windows" (symbol-name system-type)))
 ;; (if windows-p (message "it's windows") (message "it's linux"))
-(defvar reload-on-save nil)
 (defvar kill-complation-buffer nil)
+;; (defvar reload-on-save nil)
+(defcustom reload-on-save nil
+  "*whether reload when editing html files"
+  :type 'boolean
+  :group 'my)
 
 
 ;;---------------
 ;; Load plugins
 ;;---------------
 (setq emacs-directory "~/emacs")
-(add-to-list 'load-path (concat emacs-directory "/plugins"))
+(setq plugin-directory (concat emacs-directory "/plugins"))
+(add-to-list 'load-path plugin-directory)
 (add-to-list 'load-path (concat emacs-directory "/themes"))
+
+
+;;--------------------------------
+;; package
+;;--------------------------------
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+
+(add-to-list 'load-path "~/emacs/plugins/use-package")
+(require 'use-package)
+
 
 
 ;;----------------
@@ -64,7 +88,9 @@
       
       ;; if less-css-mode reload page
       (when (with-current-buffer buffer
-            (search-forward "lessc" nil t))
+              (or 
+               (search-forward "lessc" nil t)
+               (search-forward "sass" nil t)))
           (reload)
       )))
   (cons msg code))
@@ -187,13 +213,15 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "Consolas-10")
+(set-default-font "Ubuntu Mono-10")        ;consolas-10
+(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
+;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
 ;; disable auto backup
 (setq make-backup-files nil)
 
 ;; show line number
-(global-linum-mode t)
+;; (global-linum-mode t)
 
 ;; highline parentheses match
 (show-paren-mode 1)
@@ -239,8 +267,10 @@ region-end is used."
 
 ;; Emacs server
 (require 'server)
+(setq server-socket-dir "~/.emacs.d/server")
 (unless (server-running-p)
   (server-start))
+
 
 
 ;; turn on auto revert mode
@@ -364,10 +394,19 @@ region-end is used."
 (global-visual-fill-column-mode 1)
 (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
+;; Load .bashrc $PATH
+(require 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+
 ;; zen coding
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+<<<<<<< HEAD
 ;; (add-hook 'nxhtml-mode-hook 'zencoding-mode)
+=======
+>>>>>>> origin/kubuntu
 (add-hook 'web-mode-hook 'zencoding-mode)
 ;; reset key bind
 (define-key zencoding-mode-keymap (kbd "<C-return>") nil)
@@ -383,6 +422,12 @@ region-end is used."
 ;; snippets
 (add-to-list 'load-path "~/emacs/plugins/yasnippet-snippets")
 (require 'yasnippet-snippets)
+;; (add-to-list 'yas-snippet-dirs "~/emacs/plugins/my-yasnippet-snippets")
+
+;; es6 snippet
+(add-to-list 'load-path "~/emacs/plugins/es6-snippets")
+(require 'es6-snippets)
+
 
 ;; auto-complete
 (add-to-list 'load-path "~/emacs/plugins/popup-el")
@@ -471,6 +516,8 @@ region-end is used."
 
 
 ;; web-mode
+(add-to-list 'load-path "~/emacs/plugins/web-mode")
+
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -494,8 +541,6 @@ region-end is used."
 ;; (add-to-list 'load-path "~/emacs/plugins/nxhtml")
 ;; (load "~/emacs/plugins/nxhtml/autostart.el")
 ;; (setq mumamo-background-colors nil)
-
-
 
 
 ;; find-file-in-project
@@ -546,6 +591,7 @@ region-end is used."
        '("node_modules"
          "bower_components"
          "target"
+         "platforms"
          )))
       (other-option '" -not -path '*/\.*'"))
   ;; (message (concat exclude-option other-option))
@@ -556,7 +602,7 @@ region-end is used."
 ;; (setq ffip-project-file ".git")
 ; TODO: define local patterns, local excludes bind to perspective
 (setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
-   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.xml" "*.properties" "*.hs" "*.coffee"))
+   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.scss" "*.xml" "*.properties" "*.hs" "*.coffee"))
 
 (if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 
@@ -653,9 +699,35 @@ region-end is used."
 ;; (set-face-background 'hl-line "black") ;;
 
 
+
+;; scala
+(use-package ensime
+  :ensure t
+  :pin melpa-stable)
+
+(use-package sbt-mode
+  :pin melpa-stable)
+
+(use-package scala-mode
+  :pin melpa-stable)
+
+(require 'ensime)
+(require 'scala-mode)
+(require 'sbt-mode)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+
+;; editorconfig
+(use-package editorconfig
+  :ensure t
+  :pin melpa-stable
+  :config
+  (editorconfig-mode 1))
+
+
 ;; dash
-(add-to-list 'load-path "~/emacs/plugins/dash")
-(require 'dash)
+;; (add-to-list 'load-path "~/emacs/plugins/dash")
+;; (require 'dash)
 
 ;; wrap-region
 (add-to-list 'load-path "~/emacs/plugins/wrap-region")
@@ -664,6 +736,8 @@ region-end is used."
 (wrap-region-global-mode t)
 
 
+(add-to-list 'load-path "~/emacs/plugins/linum-relative")
+(require 'linum-relative)
 
 
 ;; jedi
@@ -694,7 +768,11 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/js2-mode")
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode)) 
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
+
+(setq js2-strict-missing-semi-warning nil)
 
 
 ;; groovy
@@ -728,8 +806,8 @@ region-end is used."
 
 
 ;; org-impress-js
-;; (add-to-list 'load-path "~/emacs/plugins/org-impress-js")
-;; (require 'org-impress-js)
+(add-to-list 'load-path "~/emacs/plugins/org-impress-js")
+(require 'ox-impress-js)
 
 
 ;; cal-china-x
@@ -751,6 +829,7 @@ region-end is used."
   (dirtree-in-buffer (ffip-project-root) t))
 
 
+
 (require 'string-inflection)
 
 
@@ -759,6 +838,12 @@ region-end is used."
 (require 'restclient)
 (setq restclient-inhibit-cookies t)
 (add-to-list 'auto-mode-alist '("\\.restclient\\'" . restclient-mode))
+
+
+;; dockerfile mode
+(add-to-list 'load-path "~/emacs/plugins/dockerfile-mode")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 
 
@@ -797,16 +882,56 @@ region-end is used."
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
+;; tags
+;; (custom-set-variables '(haskell-tags-on-save t))
+(setq haskell-tags-on-save t)
+(require 'speedbar)
+(speedbar-add-supported-extension ".hs")
+
+
+;; TAGS
+(defun create-tags (dir-name)
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (shell-command
+   (format "ctags -f %s -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )
+
 
 ;; coffee-script
 (add-to-list 'load-path "~/emacs/plugins/coffee-mode/")
 (require 'coffee-mode)
 
+(defun my/coffee-compile-file ()
+  (interactive)
+  (coffee-compile-file)
+  (when reload-on-save
+    (reload)))
+
 ;; defined custom key-bindings
 (eval-after-load "coffee-mode"
   '(progn
      (setq coffee-indent-tabs-mode t)
-     (define-key coffee-mode-map (kbd "C-c C-c") 'coffee-compile-file)))
+     (define-key coffee-mode-map (kbd "C-c C-c") 'my/coffee-compile-file))) ;coffee-compile-file
+
+
+;; rvm
+(add-to-list 'load-path "~/emacs/plugins/rvm")
+(require 'rvm)
+(rvm-use-default)
+
+;; ruby
+(add-to-list 'load-path "~/emacs/plugins/enhanced-ruby-mode") ; must be added after any path containing old ruby-mode
+(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+
+
+;; po-mode
+(autoload 'po-mode "po-mode"
+  "Major mode for translators to edit PO files" t)
+(setq auto-mode-alist (cons '("\\.po\\'\\|\\.po\\." . po-mode)
+                            auto-mode-alist))
 
 
 
@@ -837,7 +962,7 @@ region-end is used."
 
 
 ;; sgml mode
-(add-hook 'nxhtml-mode-hook (lambda () 
+(add-hook 'sgml-mode-hook (lambda () 
   (interactive)
   (local-set-key (kbd "C-c C-w") 'html-wrap-in-tag)
   ))
@@ -853,7 +978,7 @@ region-end is used."
 (require 'less-css-mode)
 (add-hook 'less-css-mode-hook (lambda ()
   (interactive)
-  (auto-complete-mde t)
+  (auto-complete-mode t)
   ))
 ;; (setq less-css-compile-at-save t)       ;compile at save
 
@@ -861,6 +986,7 @@ region-end is used."
 ;; scss
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(setq scss-compile-at-save nil)
 
 
 ;; plantuml (https://github.com/skuro/plantuml-mode)
@@ -900,6 +1026,9 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(setq markdown-content-type "utf-8")
+;; pointing to markdown command
+(custom-set-variables '(markdown-command "/usr/local/bin/markdown"))
 
 
 ;; angular js snippets
@@ -908,13 +1037,21 @@ region-end is used."
 (eval-after-load "sgml-mode"
   '(define-key html-mode-map (kbd "C-c C-d") 'ng-snip-show-docs-at-point))
 
+
+;; company-mode. required by scala-mode
+(add-to-list 'load-path "~/emacs/plugins/company-mode/")
+(require 'company)
+
+
 ;; 
 ;; tern
 ;; http://ternjs.net/doc/manual.html
 ;; 
+;; Also, make sure the dependencies of tern are installed: Run `npm install` under ~/emacs/plugins/tern
+;; 
 (add-to-list 'load-path "~/emacs/plugins/tern/emacs/")
 (autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(add-hook 'js2-mode-hook (lambda () (auto-complete-mode t) (tern-mode t)))
 (eval-after-load 'tern
    '(progn
       (require 'tern-auto-complete)
@@ -923,7 +1060,7 @@ region-end is used."
 ;; this line only needed when `tern` cannot start correctly.
 ;; e.g. "~/emacs" dir install in a windows partition.
 ;; in this case, you need to install `tern` command manually via `npm install -g tern`
-(setq tern-command (list "tern"))
+;; (setq tern-command (list "tern"))
 
 
 ;; common lisp SLIME
@@ -934,20 +1071,18 @@ region-end is used."
     (setq inferior-lisp-program "/usr/bin/sbcl")))
 
 
-;; company-mode. required by scala-mode
-(add-to-list 'load-path "~/emacs/plugins/company-mode/")
-(require 'company)
 
 ;; 
 ;; scala
 ;;
-(add-to-list 'load-path "~/emacs/plugins/scala-mode2/")
-(require 'scala-mode2)
+;; (add-to-list 'load-path "~/emacs/plugins/scala-mode2/")
+;; (require 'scala-mode2)
 
-(add-to-list 'load-path "~/emacs/plugins/sbt-mode/")
-(require 'sbt-mode)
 
-(add-to-list 'load-path "~/emacs/plugins/ensime-emacs/")
+;; (add-to-list 'load-path "~/emacs/plugins/sbt-mode/")
+;; (require 'sbt-mode)
+
+;; (add-to-list 'load-path "~/emacs/plugins/ensime-emacs/")
 
 ;; If necessary, add JDK_HOME or JAVA_HOME to the environment
 ;; (setenv "JDK_HOME" "/path/to/jdk")
@@ -955,9 +1090,44 @@ region-end is used."
 ;; (setenv "PATH" (concat "/path/to/sbt/bin:" (getenv "PATH")))
 ;; (setenv "PATH" (concat "/path/to/scala/bin:" (getenv "PATH")))
 ;; You can also customize `ensime-inf-get-project-root' and `ensime-inf-get-repl-cmd-line'
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (require 'ensime)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
+
+;; Free distraction mode
+(require 'olivetti)
+(setq-default olivetti-body-width 0.5)
+
+(defun jc/toggle-writing-mode ()
+  "Toggle a distraction-free environment for writing."
+  (interactive)
+  (cond ((bound-and-true-p olivetti-mode)
+         (olivetti-mode -1)
+         (olivetti-toggle-hide-mode-line)
+         (toggle-frame-fullscreen)
+         (menu-bar-mode 1))
+        (t
+         (olivetti-mode 1)
+         (olivetti-toggle-hide-mode-line)
+         (toggle-frame-fullscreen)
+         (menu-bar-mode -1))))
+
+(global-set-key (kbd "<S-f11>") 'jc/toggle-writing-mode)
+
+
+;; highlight-tail mode
+(require 'highlight-tail)
+(message "Highlight-tail loaded - now your Emacs will be even more sexy!")
+
+;;
+;; [ here some setq of variables - see CONFIGURATION section below ]
+;; (setq highlight-tail-colors '(("black" . 0)
+;;                               ("#bc2525" . 25)
+;;                               ("black" . 66)))
+(setq highlight-tail-steps 40
+      highlight-tail-timer 0.02)
+
+;; (highlight-tail-mode)
 
 
 ;; ruby, rvm.el. fixxed ruby gem not found issue on OSX.
@@ -969,12 +1139,6 @@ region-end is used."
 (autoload 'xahk-mode "xahk-mode" "Load xahk-mode for editing AutoHotkey scripts." t)
 
 
-;;--------------------------------
-;; package
-;;--------------------------------
-(require 'package)
-(add-to-list 'package-archives 
-  '("marmalade" . "http://marmalade-repo.org/packages/") t) (package-initialize)
 
 
 ;; (require 'fcitx)
@@ -1000,12 +1164,18 @@ region-end is used."
                              ))
 
 
-
 ;;--------------------------------
 ;; org-mode for jekyll
 ;;--------------------------------
 (load (concat emacs-directory "/org-jekyll.el"))
 (require 'org-jekyll)
+
+;; ox-impress-js
+(add-to-list 'load-path (concat plugin-directory "/org-impress-js.el-org-8.2.10"))
+(require 'ox-impress-js)
+
+(add-to-list 'org-export-backends 'taskjuggler)
+(require 'ox-taskjuggler)
 
 
 ;;--------------------------------
@@ -1021,6 +1191,4 @@ region-end is used."
 (setq user-custom-file (concat emacs-directory "/user-custom.el"))
 (load user-custom-file)
 (load (concat emacs-directory "/pwd.el"))
-
-
 
