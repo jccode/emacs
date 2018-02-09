@@ -213,8 +213,8 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
-(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
+;(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
+;(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
 ;; disable auto backup
@@ -222,6 +222,7 @@ region-end is used."
 
 ;; show line number
 (global-linum-mode t)
+(setq linum-format "%d ")
 
 ;; highline parentheses match
 (show-paren-mode 1)
@@ -393,6 +394,7 @@ region-end is used."
 (require 'visual-fill-column)
 (global-visual-fill-column-mode 1)
 (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+
 
 ;; Load .bashrc $PATH
 (require 'exec-path-from-shell)
