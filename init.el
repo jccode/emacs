@@ -221,7 +221,7 @@ region-end is used."
 (setq make-backup-files nil)
 
 ;; show line number
-(global-linum-mode t)
+;; (global-linum-mode t)
 (setq linum-format "%d ")
 
 ;; highline parentheses match
@@ -1115,6 +1115,11 @@ region-end is used."
          (menu-bar-mode -1))))
 
 (global-set-key (kbd "<S-f11>") 'jc/toggle-writing-mode)
+
+
+;; writeroom-mode
+(require 'writeroom-mode)
+;; (add-hook 'writeroom-mode-hook (lambda () (global-linum-mode 0)))
 
 
 ;; highlight-tail mode
