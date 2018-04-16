@@ -6,7 +6,7 @@
 (setq owncloud-d (if windows-p "c:/Users/01372461/ownCloud" "~/ownCloud"))
 (setq note-d (concat owncloud-d "/note/"))
 (setq todo-d (concat owncloud-d "/task/"))
-(setq work-d (concat owncloud-d "/work/sf/"))
+(setq work-d (concat owncloud-d "/work/"))
 (setq task-file (concat owncloud-d "/task/task.org"))
 
 
@@ -62,8 +62,10 @@
 (defun custom-persp/work ()
   (interactive)
   (custom-persp "work"
-                (let ((root work-d))
-                  (find-file root))))
+                (let* ((root work-d)
+                      (curdate (format-time-string "%Y-%m" (current-time)))
+                      (filename (concat root curdate ".org")))
+                  (find-file filename))))
 
 (define-key persp-mode-map (kbd "C-x p n") 'custom-persp/note)
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
