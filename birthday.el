@@ -2,6 +2,7 @@
 (setq birthday '(
                  (holiday-lunar 1 8 "罗健华生日" 0)
                  (holiday-lunar 1 26 "陈宏波生日" 0)
+                 (holiday-lunar 3 5 "susan生日" 0)
                  (holiday-lunar 3 21 "阿贤生日" 0)
                  (holiday-lunar 4 13 "小猫生日" 0)
                  (holiday-lunar 5 2 "老马生日" 0)
@@ -12,5 +13,5 @@
                  (holiday-lunar 9 9 "哥哥生日" 0)
                  (holiday-lunar 9 16 "我的生日" 0)
                  (holiday-lunar 10 27 "姐姐生日" 0)
-                 (holiday-fixed 11 20 "老婆周年纪念日")
+                 (holiday-fixed 11 20 "静静周年纪念日")
                  (holiday-lunar 12 9 "林廷彦生日" 0)))
