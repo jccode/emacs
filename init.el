@@ -213,7 +213,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-;(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
+(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
 ;(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -238,7 +238,7 @@ region-end is used."
 (icomplete-mode t)
 
 ;; set default fill-colume width 88
-(setq-default fill-column 88)
+(setq-default fill-column 120)
 
 ;; set frame title
 (setq frame-title-format "%b - Emacs")
@@ -281,6 +281,7 @@ region-end is used."
 (define-coding-system-alias 'UTF-8 'utf-8)
 
 (global-visual-line-mode t)
+
 
 
 ;;---------------
@@ -392,8 +393,8 @@ region-end is used."
 ;; -----------------
 
 (require 'visual-fill-column)
-(global-visual-fill-column-mode 1)
-(add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
+;; (global-visual-fill-column-mode 1)
+;; (add-hook 'visual-line-mode-hook 'visual-fill-column-mode)
 
 
 ;; Load .bashrc $PATH
@@ -702,29 +703,29 @@ region-end is used."
 
 ;; scala
 
-(use-package ensime
-  :ensure t
-  :pin melpa-stable)
+;; (use-package ensime
+;;   :ensure t
+;;   :pin melpa-stable)
 
-(use-package sbt-mode
-  :pin melpa-stable)
+;; (use-package sbt-mode
+;;   :pin melpa-stable)
 
-(use-package scala-mode
-  :pin melpa-stable)
+;; (use-package scala-mode
+;;   :pin melpa-stable)
 
-(require 'ensime)
-(require 'scala-mode)
-(require 'sbt-mode)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;; (require 'ensime)
+;; (require 'scala-mode)
+;; (require 'sbt-mode)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
 ;; editorconfig
 
-(use-package editorconfig
-  :ensure t
-  :pin melpa-stable
-  :config
-  (editorconfig-mode 1))
+;; (use-package editorconfig
+;;   :ensure t
+;;   :pin melpa-stable
+;;   :config
+;;   (editorconfig-mode 1))
 
 
 ;; dash
@@ -775,6 +776,7 @@ region-end is used."
 (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
 
 (setq js2-strict-missing-semi-warning nil)
+
 
 
 ;; groovy
@@ -1118,8 +1120,10 @@ region-end is used."
 
 
 ;; writeroom-mode
+;;   conflict with linum-mode.
 (require 'writeroom-mode)
 ;; (add-hook 'writeroom-mode-hook (lambda () (global-linum-mode 0)))
+(setq-default writeroom-width 120)
 
 
 ;; highlight-tail mode
@@ -1144,8 +1148,6 @@ region-end is used."
 
 
 (autoload 'xahk-mode "xahk-mode" "Load xahk-mode for editing AutoHotkey scripts." t)
-
-
 
 
 ;; (require 'fcitx)
