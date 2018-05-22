@@ -429,6 +429,14 @@ region-end is used."
 (add-to-list 'load-path "~/emacs/plugins/es6-snippets")
 (require 'es6-snippets)
 
+;; my snippets
+(add-to-list 'load-path "~/emacs/plugins/my-snippets")
+(require 'my-snippets)
+
+(add-to-list 'load-path "~/emacs/plugins/yasnippet-restclient")
+(require 'yasnippet-restclient)
+
+
 
 ;; auto-complete
 (add-to-list 'load-path "~/emacs/plugins/popup-el")

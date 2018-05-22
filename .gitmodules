@@ -112,3 +112,9 @@
 	path = plugins/use-package
 	url = https://github.com/jwiegley/use-package.git
 
+[submodule "plugins/my-snippets"]
+	path = plugins/my-snippets
+	url = git@github.com:jccode/my-snippets.git
+[submodule "plugins/yasnippet-restclient"]
+	path = plugins/yasnippet-restclient
+	url = git@github.com:jccode/yasnippet-restclient.git
