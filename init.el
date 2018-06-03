@@ -213,7 +213,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
+;; (set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
 ;(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -268,7 +268,7 @@ region-end is used."
 
 ;; Emacs server
 (require 'server)
-(setq server-socket-dir "~/.emacs.d/server")
+;; (setq server-socket-dir "~/.emacs.d/server")
 (unless (server-running-p)
   (server-start))
 
