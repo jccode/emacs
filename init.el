@@ -213,7 +213,7 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-;; (set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
+(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
 ;(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -253,8 +253,9 @@ region-end is used."
 (setq user-full-name "jcchen")
 (setq user-mail-address "junchangchen@gmail.com")
 
-;; hide toolbar
+;; hide toolbar & menubar
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; quiet, please! No dinging!
 (setq ring-bell-function 'ignore)
@@ -1160,6 +1161,9 @@ region-end is used."
 
 ;; (require 'fcitx)
 ;; (fcitx-default-setup)
+
+
+(autoload 'hide-mode-line "hide-mode-line" nil t)
 
 
 ;;------------------------------
