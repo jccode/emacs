@@ -207,6 +207,16 @@ region-end is used."
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
+;; json escape
+(defun json-escape (begin end)
+  "escape json string"
+  (interactive "r")
+  (setq str (buffer-substring begin end))
+  (setq r1 (replace-regexp-in-string "\\\\" "\\\\\\\\" str))
+  (setq rn (replace-regexp-in-string "\"" "\\\\\"" r1))
+  (kill-new rn)
+  (message "Escape: %s" rn)
+  )
 
 ;;---------------
 ;; Common
@@ -655,14 +665,14 @@ region-end is used."
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; enable a more powerful jump back function from ace jump mode
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+;; (autoload
+;;   'ace-jump-mode-pop-mark
+;;   "ace-jump-mode"
+;;   "Ace jump back:-)"
+;;   t)
+;; (eval-after-load "ace-jump-mode"
+;;   '(ace-jump-mode-enable-mark-sync))
+;; (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
 
 ;; info-look
@@ -786,7 +796,8 @@ region-end is used."
 
 (setq js2-strict-missing-semi-warning nil)
 
-
+;; javascript mode indent
+(setq js-indent-level 2)
 
 ;; groovy
 (add-to-list 'load-path "~/emacs/plugins/emacs-groovy-mode")
@@ -1041,7 +1052,7 @@ region-end is used."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (setq markdown-content-type "utf-8")
 ;; pointing to markdown command
-(custom-set-variables '(markdown-command "/usr/local/bin/markdown"))
+;; (custom-set-variables '(markdown-command "/usr/local/bin/markdown"))
 
 
 ;; angular js snippets
