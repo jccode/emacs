@@ -2,10 +2,11 @@
 (setq birthday '(
                  (holiday-lunar 1 8 "罗健华生日" 0)
                  (holiday-lunar 1 26 "陈宏波生日" 0)
-                 (holiday-lunar 3 6 "susan生日" 0)
+                 (holiday-lunar 3 5 "susan生日" 0)
                  (holiday-lunar 3 21 "阿贤生日" 0)
                  (holiday-lunar 4 13 "小猫生日" 0)
                  (holiday-lunar 5 2 "老马生日" 0)
+                 (holiday-fixed 5 10 "dodoro生日")
                  (holiday-lunar 5 22 "陈鑫生生日" 0)
                  (holiday-lunar 5 25 "静静生日" 0)
                  (holiday-lunar 8 8 "付松生日" 0)
