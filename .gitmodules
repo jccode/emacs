@@ -58,14 +58,14 @@
 	url = https://github.com/haskell/haskell-mode.git
 [submodule "plugins/emacs-python-environment"]
 	path = plugins/emacs-python-environment
-	url = https://github.com:tkf/emacs-python-environment.git
+	url = https://github.com/tkf/emacs-python-environment.git
 [submodule "plugins/angular-snippets.el"]
 	path = plugins/angular-snippets.el
 	url = https://github.com/magnars/angular-snippets.el.git
     ignore = dirty
 [submodule "plugins/tern"]
 	path = plugins/tern
-	url = https://github.com:marijnh/tern.git
+	url = https://github.com/marijnh/tern.git
 [submodule "plugins/ensime-emacs"]
 	path = plugins/ensime-emacs
 	url = https://github.com/ensime/ensime-emacs.git
@@ -111,10 +111,9 @@
 [submodule "plugins/use-package"]
 	path = plugins/use-package
 	url = https://github.com/jwiegley/use-package.git
-
 [submodule "plugins/my-snippets"]
 	path = plugins/my-snippets
-	url = https://github.com:jccode/my-snippets.git
+	url = https://github.com/jccode/my-snippets.git
 [submodule "plugins/yasnippet-restclient"]
 	path = plugins/yasnippet-restclient
-	url = https://github.com:jccode/yasnippet-restclient.git
+	url = https://github.com/jccode/yasnippet-restclient.git
