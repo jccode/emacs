@@ -624,7 +624,8 @@ region-end is used."
 ; TODO: define local patterns, local excludes bind to perspective
 (setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
                       "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.scss" "*.xml"
-                      "*.properties" "*.hs" "*.coffee" "*.md" "*.markdown"))
+                      "*.properties" "*.hs" "*.coffee" "*.md" "*.markdown"
+                      "*.yml" "*.yaml"))
 
 (if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 
