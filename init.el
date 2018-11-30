@@ -612,6 +612,7 @@ region-end is used."
          "bower_components"
          "target"
          "platforms"
+         "_site"
          )))
       (other-option '" -not -path '*/\.*'"))
   ;; (message (concat exclude-option other-option))
@@ -622,7 +623,8 @@ region-end is used."
 ;; (setq ffip-project-file ".git")
 ; TODO: define local patterns, local excludes bind to perspective
 (setq ffip-patterns '("*.html" "*.htm" "*.org" "*.txt" "*.el" "*.py" "*.js" 
-   "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.scss" "*.xml" "*.properties" "*.hs" "*.coffee"))
+                      "*.java" "*.jsp" "*.php" "*.css" "*.less" "*.scss" "*.xml"
+                      "*.properties" "*.hs" "*.coffee" "*.md" "*.markdown"))
 
 (if windows-p (setq ffip-find-executable "C:/PROGRA~2/Git/bin/find.exe"))
 
