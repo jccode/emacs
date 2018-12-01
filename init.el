@@ -4,6 +4,7 @@
 ;; define variables
 ;;------------------
 (defvar windows-p (string-match "windows" (symbol-name system-type)))
+(defvar osx-p (string-match "darwin" (symbol-name system-type)))
 ;; (if windows-p (message "it's windows") (message "it's linux"))
 (defvar kill-complation-buffer nil)
 ;; (defvar reload-on-save nil)
@@ -223,7 +224,8 @@ region-end is used."
 ;;---------------
 
 ; (set-background-color "darkblue")
-(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
+(unless osx-p (set-default-font "consolas-10"))
+;(set-default-font "consolas-10")        ;consolas-10 ;Ubuntu Mono-10
 ;(set-fontset-font t 'han (font-spec :family "Microsoft Yahei" :size 12))
 ;; (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
 
@@ -743,11 +745,18 @@ region-end is used."
 
 ;; editorconfig
 
-;; (use-package editorconfig
-;;   :ensure t
-;;   :pin melpa-stable
-;;   :config
-;;   (editorconfig-mode 1))
+(use-package editorconfig
+  :ensure t
+  :pin melpa-stable
+  :config
+  (editorconfig-mode 1))
+
+(use-package magit
+  :ensure t
+  :pin melpa-stable
+  )
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 
 ;; dash
