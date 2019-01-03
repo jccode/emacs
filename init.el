@@ -759,6 +759,15 @@ region-end is used."
 (global-set-key (kbd "C-x g") 'magit-status)
 
 
+;; org-mode bable language
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (ditaa . t)
+   (ledger . t)
+   (latex . t)))
+
+
 ;; dash
 (add-to-list 'load-path "~/emacs/plugins/dash")
 (require 'dash)
