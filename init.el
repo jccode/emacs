@@ -745,18 +745,18 @@ region-end is used."
 
 ;; editorconfig
 
-(use-package editorconfig
-  :ensure t
-  :pin melpa-stable
-  :config
-  (editorconfig-mode 1))
+;; (use-package editorconfig
+;;   :ensure t
+;;   :pin melpa-stable
+;;   :config
+;;   (editorconfig-mode 1))
 
-(use-package magit
-  :ensure t
-  :pin melpa-stable
-  )
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
+;; (use-package magit
+;;   :ensure t
+;;   :pin melpa-stable
+;;   )
+;; (require 'magit)
+;; (global-set-key (kbd "C-x g") 'magit-status)
 
 
 ;; org-mode bable language
