@@ -1191,6 +1191,11 @@ region-end is used."
 (autoload 'xahk-mode "xahk-mode" "Load xahk-mode for editing AutoHotkey scripts." t)
 
 
+;; ledger-mode
+(add-to-list 'load-path "~/emacs/plugins/ledger-mode/")
+(require 'ledger-mode)
+
+
 ;; (require 'fcitx)
 ;; (fcitx-default-setup)
 
