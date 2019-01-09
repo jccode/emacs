@@ -117,3 +117,6 @@
 [submodule "plugins/yasnippet-restclient"]
 	path = plugins/yasnippet-restclient
 	url = https://github.com/jccode/yasnippet-restclient.git
+[submodule "plugins/ledger-mode"]
+	path = plugins/ledger-mode
+	url = https://github.com/ledger/ledger-mode.git

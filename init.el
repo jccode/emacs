@@ -1187,8 +1187,12 @@ region-end is used."
 (require 'rvm)
 (rvm-use-default) ;; use rvm's default ruby for the current Emacs session
 
-
 (autoload 'xahk-mode "xahk-mode" "Load xahk-mode for editing AutoHotkey scripts." t)
+
+
+;; ledger-mode
+(add-to-list 'load-path "~/emacs/plugins/ledger-mode/")
+(require 'ledger-mode)
 
 
 ;; (require 'fcitx)
