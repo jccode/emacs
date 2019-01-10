@@ -78,7 +78,7 @@
 ;; capture
 (setq org-default-notes-file (concat todo-d "refile.org"))
 (setq org-capture-templates 
-      '(("t" "todo" entry (file org-default-notes-file) 
+      '(("t" "task" entry (file+datetree (concat work-d (format-time-string "%Y-%m" (current-time)) ".org")) 
          ;; "* TODO %?\n %U\n %i\n %a" :clock-in t :clock-resume t)
          "* TODO %?\n %i\n" :clock-in t :clock-resume t)
         ("m" "meeting" entry (file org-default-notes-file)
